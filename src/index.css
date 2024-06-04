@@ -1,17 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    @font-face {
-        font-family: 'Roboto';
-        font-weight: normal;
-        src: url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-    }
-
     html {
         font-family: 'Roboto', system-ui, sans-serif;
-        @apply text-neutral-dark-1
+        @apply text-neutral-dark-1 break-words
     }
 }
 
@@ -56,5 +52,21 @@
     .text-body-xs {
         font-size: 0.625rem;
         line-height: 0.875rem;
+    }
+
+    .btn-primary {
+        @apply bg-highlight-1 text-heading-xs text-neutral-light-5 flex items-center gap-[0.625rem] rounded-[0.25rem] px-[1.125rem] py-[0.75rem] justify-center
+    }
+
+    .btn-outline-primary {
+        @apply text-heading-xs text-highlight-1 flex items-center gap-[0.625rem] rounded-[0.25rem] px-[1.125rem] py-[0.75rem] justify-center border-[0.094rem]
+    }
+
+    .input-container {
+        @apply inline-flex flex-col gap-[0.5rem]
+    }
+
+    .input-primary {
+        @apply rounded-[0.25rem] accent-highlight-1 py-[0.75rem] px-[1rem] outline-none border-neutral-light-1 border-[0.094rem] focus:border-highlight-1 caret-highlight-1 text-body-md placeholder-neutral-dark-5 disabled:bg-neutral-light-4 autofill:bg-none
     }
 }
