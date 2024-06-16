@@ -7,7 +7,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Toast as ToastType } from '../../types/toast';
 import { useContext } from 'react';
-import { ToastContext } from '../contexts/ToastContext';
+import { ToastContext } from '../../contexts/ToastContext';
 
 interface ToastProps {
   toast: ToastType;

@@ -6,7 +6,7 @@ import { SignupRequest } from '../types/auth';
 import useSignup from '../hooks/auth/useSignup';
 import { useNavigate } from 'react-router-dom';
 import useInvalid from '../hooks/valid/useInvalid';
-import { ToastContext } from '../components/contexts/ToastContext';
+import { ToastContext } from '../contexts/ToastContext';
 
 const SignupPage = () => {
   const [signupRequest, setSignupRequest] = useState<SignupRequest>({

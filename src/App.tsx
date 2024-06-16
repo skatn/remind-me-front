@@ -3,10 +3,10 @@ import LoginPage from './pages/LoginPage';
 import Layout from './layouts/Layout';
 import NotFoundPage from './pages/NotFoundPage';
 import SignupPage from './pages/SignupPage';
-import { AxiosConfig } from './components/configs/AxiosConfig';
+import { AxiosConfig } from './configs/AxiosConfig';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ToastContextProvider } from './components/contexts/ToastContext';
+import { ToastContextProvider } from './contexts/ToastContext';
 
 const queryClient = new QueryClient();
 
