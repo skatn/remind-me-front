@@ -6,6 +6,7 @@ import SignupPage from './pages/SignupPage';
 import { AxiosConfig } from './components/configs/AxiosConfig';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ToastContextProvider } from './components/contexts/ToastContext';
 
 const queryClient = new QueryClient();
 
@@ -14,16 +15,18 @@ function App() {
     <>
       <AxiosConfig />
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignupPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-        <ReactQueryDevtools />
+        <ToastContextProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+          <ReactQueryDevtools />
+        </ToastContextProvider>
       </QueryClientProvider>
     </>
   );

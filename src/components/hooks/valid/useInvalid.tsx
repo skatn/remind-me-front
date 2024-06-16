@@ -9,9 +9,8 @@ const useInvalid = (initialState: InvalidField) => {
     setInvalidField({ ...initialState, globalErrors: [] });
 
     if (error instanceof AxiosError) {
-      const response: InvalidParamsResponse = error.response!.data;
-
-      if (response.code === 'REQ_001') {
+      if (error.response!.data.code === 'REQ_001') {
+        const response: InvalidParamsResponse = error.response!.data;
         const errors: InvalidField = {
           globalErrors: [...response.globalErrors],
         };

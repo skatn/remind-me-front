@@ -7,8 +7,17 @@
 @layer base {
     html {
         font-family: 'Roboto', system-ui, sans-serif;
-        white-space: pre-line;
         @apply text-neutral-dark-1 break-words;
+    }
+
+    #root * {
+        white-space: pre-line;
+    }
+
+    #toast {
+        position: fixed;
+        bottom: 24px;
+        width: 100%;
     }
 }
 
