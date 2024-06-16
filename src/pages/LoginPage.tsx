@@ -96,21 +96,23 @@ const LoginPage = () => {
           소셜 계정으로 이용하기
         </span>
         <div className="mt-[16px] flex justify-center gap-5">
-          <Link to="">
+          <Link to={`${process.env.REACT_APP_HOST}/oauth2/authorization/naver`}>
             <img
               alt="naver login"
               src="/images/naver.jpg"
               className="size-10 rounded-full"
             />
           </Link>
-          <Link to="">
+          <Link to={`${process.env.REACT_APP_HOST}/oauth2/authorization/kakao`}>
             <img
               alt="kakao login"
               src="/images/kakao.jpg"
               className="size-10 rounded-full"
             />
           </Link>
-          <Link to="">
+          <Link
+            to={`${process.env.REACT_APP_HOST}/oauth2/authorization/google`}
+          >
             <img
               alt="google login"
               src="/images/google.jpg"

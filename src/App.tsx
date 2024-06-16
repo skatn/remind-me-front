@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ToastContextProvider } from './contexts/ToastContext';
 import { AuthenticationContextProvider } from './contexts/AuthenticationContext';
+import LoginCallbackPage from './pages/LoginCallbackPage';
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,10 @@ function App() {
                 <Route element={<Layout />}>
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/signup" element={<SignupPage />} />
+                  <Route
+                    path="/login-callback"
+                    element={<LoginCallbackPage />}
+                  />
                   <Route path="*" element={<NotFoundPage />} />
                 </Route>
               </Routes>
