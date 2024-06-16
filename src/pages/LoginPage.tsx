@@ -1,19 +1,22 @@
 import Input from '../components/input/text/Input';
 import Button from '../components/input/button/Button';
 import Divider from '../components/divider/Divider';
-import { Link, useNavigate } from 'react-router-dom';
-import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
 import { LoginRequest } from '../types/auth';
 import useLogin from '../hooks/auth/useLogin';
 import useInvalid from '../hooks/valid/useInvalid';
 import { ToastContext } from '../contexts/ToastContext';
 import { AxiosError } from 'axios';
 import { ErrorResponse } from '../types/axios';
+import { AuthenticationContext } from '../contexts/AuthenticationContext';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { addToast } = useContext(ToastContext);
   const { mutate } = useLogin();
+  const { authentication } = useContext(AuthenticationContext);
 
   const [loginRequest, setLoginRequest] = useState<LoginRequest>({
     username: '',
@@ -24,11 +27,17 @@ const LoginPage = () => {
     password: [],
   });
 
+  useEffect(() => {
+    if (authentication.isAuthenticated) {
+      navigate(location.state?.redirect || '/');
+    }
+  }, [authentication, navigate, location]);
+
   const handleLogin: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     mutate(loginRequest, {
       onSuccess: () => {
-        navigate('/');
+        navigate(location.state?.redirect || '/');
       },
       onError: (error) => {
         const errors = check(error);

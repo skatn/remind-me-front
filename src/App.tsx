@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ToastContextProvider } from './contexts/ToastContext';
 import { AuthenticationContextProvider } from './contexts/AuthenticationContext';
 import LoginCallbackPage from './pages/LoginCallbackPage';
+import Private from './components/route/Private';
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,15 @@ function App() {
                     element={<LoginCallbackPage />}
                   />
                   <Route path="*" element={<NotFoundPage />} />
+                </Route>
+                <Route
+                  element={
+                    <Private>
+                      <Layout />
+                    </Private>
+                  }
+                >
+                  <Route path="/" element={<h1>Home</h1>} />
                 </Route>
               </Routes>
             </BrowserRouter>
