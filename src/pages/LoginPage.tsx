@@ -1,25 +1,58 @@
 import Input from '../components/input/text/Input';
 import Button from '../components/input/button/Button';
 import Divider from '../components/divider/Divider';
-import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { LoginRequest } from '../types/auth';
+import useLogin from '../hooks/auth/useLogin';
+import useInvalid from '../hooks/valid/useInvalid';
+import { ToastContext } from '../contexts/ToastContext';
+import { AxiosError } from 'axios';
+import { ErrorResponse } from '../types/axios';
 
 const LoginPage = () => {
-  const [loginParam, setLoginParam] = useState({
+  const navigate = useNavigate();
+  const { addToast } = useContext(ToastContext);
+  const { mutate } = useLogin();
+
+  const [loginRequest, setLoginRequest] = useState<LoginRequest>({
     username: '',
     password: '',
   });
-
-  const handleUsernameChange = (value: string) => {
-    setLoginParam((prev) => ({ ...prev, username: value }));
-  };
-
-  const handlePasswordChange = (value: string) => {
-    setLoginParam((prev) => ({ ...prev, password: value }));
-  };
+  const { invalidField, check } = useInvalid({
+    username: [],
+    password: [],
+  });
 
   const handleLogin: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+    mutate(loginRequest, {
+      onSuccess: () => {
+        navigate('/');
+      },
+      onError: (error) => {
+        const errors = check(error);
+        if (errors) {
+          return;
+        }
+
+        if (error instanceof AxiosError) {
+          const response: ErrorResponse = error.response?.data;
+          addToast({
+            type: 'error',
+            title: '로그인 실패',
+            description: response.message,
+          });
+          return;
+        }
+
+        addToast({
+          type: 'error',
+          title: '로그인 실패',
+          description: error.message,
+        });
+      },
+    });
   };
 
   return (
@@ -30,16 +63,24 @@ const LoginPage = () => {
           type="text"
           name="username"
           placeholder="ID"
-          value={loginParam.username}
-          onChange={handleUsernameChange}
+          value={loginRequest.username}
+          onChange={(username) =>
+            setLoginRequest((prev) => ({ ...prev, username }))
+          }
+          invalid={invalidField.username.length > 0}
+          supportText={invalidField.username.join('\n')}
         />
         <Input
           type="password"
           name="password"
           placeholder="Password"
           className="mt-[16px]"
-          value={loginParam.password}
-          onChange={handlePasswordChange}
+          value={loginRequest.password}
+          onChange={(password) =>
+            setLoginRequest((prev) => ({ ...prev, password }))
+          }
+          invalid={invalidField.password.length > 0}
+          supportText={invalidField.password.join('\n')}
         />
         <Button className="mt-[24px]">로그인</Button>
       </form>
