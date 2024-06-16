@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { SignupRequest } from '../../../types/auth';
+import { SignupRequest } from '../../types/auth';
 import { api } from '../../configs/AxiosConfig';
 
 const useSignup = () => {

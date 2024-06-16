@@ -3,9 +3,9 @@ import Input from '../components/input/text/Input';
 import Button from '../components/input/button/Button';
 import OutlineButton from '../components/input/button/OutlineButton';
 import { SignupRequest } from '../types/auth';
-import useSignup from '../components/hooks/auth/useSignup';
+import useSignup from '../hooks/auth/useSignup';
 import { useNavigate } from 'react-router-dom';
-import useInvalid from '../components/hooks/valid/useInvalid';
+import useInvalid from '../hooks/valid/useInvalid';
 import { ToastContext } from '../components/contexts/ToastContext';
 
 const SignupPage = () => {

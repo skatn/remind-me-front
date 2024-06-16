@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { InvalidField, InvalidParamsResponse } from '../../../types/valid';
+import { InvalidField, InvalidParamsResponse } from '../../types/valid';
 import { AxiosError } from 'axios';
 
 const useInvalid = (initialState: InvalidField) => {
