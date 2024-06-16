@@ -93,8 +93,16 @@ const SignupPage = () => {
             supportText={invalidField.passwordConfirm.join('\n')}
           />
           <div className="flex gap-[12px]">
-            <OutlineButton className="flex-1">취소</OutlineButton>
-            <Button className="flex-1">회원가입</Button>
+            <OutlineButton
+              type="button"
+              className="flex-1"
+              onClick={() => navigate(-1)}
+            >
+              취소
+            </OutlineButton>
+            <Button type="submit" className="flex-1">
+              회원가입
+            </Button>
           </div>
         </form>
       </div>

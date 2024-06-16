@@ -7,11 +7,24 @@ interface ButtonProps {
   leftIcon?: IconDefinition;
   rightIcon?: IconDefinition;
   className?: string;
+  type?: 'submit' | 'reset' | 'button' | undefined;
+  onClick?: () => void;
 }
 
-const Button = ({ children, leftIcon, rightIcon, className }: ButtonProps) => {
+const Button = ({
+  children,
+  leftIcon,
+  rightIcon,
+  className,
+  type,
+  onClick,
+}: ButtonProps) => {
   return (
-    <button className={`btn-primary ${className}`}>
+    <button
+      className={`btn-primary ${className}`}
+      type={type}
+      onClick={onClick}
+    >
       {leftIcon && <FontAwesomeIcon icon={leftIcon} />}
       {children}
       {rightIcon && <FontAwesomeIcon icon={rightIcon} />}

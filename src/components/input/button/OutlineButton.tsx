@@ -7,6 +7,8 @@ interface OutlineButtonProps {
   leftIcon?: IconDefinition;
   rightIcon?: IconDefinition;
   className?: string;
+  type?: 'submit' | 'reset' | 'button' | undefined;
+  onClick?: () => void;
 }
 
 const OutlineButton = ({
@@ -14,9 +16,15 @@ const OutlineButton = ({
   leftIcon,
   rightIcon,
   className,
+  type,
+  onClick,
 }: OutlineButtonProps) => {
   return (
-    <button className={`btn-outline-primary ${className}`}>
+    <button
+      className={`btn-outline-primary ${className}`}
+      type={type}
+      onClick={onClick}
+    >
       {leftIcon && <FontAwesomeIcon icon={leftIcon} />}
       {children}
       {rightIcon && <FontAwesomeIcon icon={rightIcon} />}
