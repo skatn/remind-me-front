@@ -1,5 +1,4 @@
 interface InputProps {
-  id?: string;
   type?: string;
   name?: string;
   value?: string | number;
@@ -14,7 +13,6 @@ interface InputProps {
 
 const Input = ({
   title,
-  id,
   type,
   name,
   value,
@@ -28,12 +26,12 @@ const Input = ({
   return (
     <div className={`input-container ${className}`}>
       {title && (
-        <label htmlFor={id} className="text-heading-xs">
+        <label htmlFor={name} className="text-heading-xs">
           {title}
         </label>
       )}
       <input
-        id={id}
+        id={name}
         type={type}
         name={name}
         value={value}

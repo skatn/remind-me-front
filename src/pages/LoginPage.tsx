@@ -28,7 +28,6 @@ const LoginPage = () => {
       <form className="flex flex-col" onSubmit={handleLogin}>
         <Input
           type="text"
-          id="username"
           name="username"
           placeholder="ID"
           value={loginParam.username}
@@ -36,7 +35,6 @@ const LoginPage = () => {
         />
         <Input
           type="password"
-          id="password"
           name="password"
           placeholder="Password"
           className="mt-[16px]"
