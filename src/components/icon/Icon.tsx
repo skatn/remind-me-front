@@ -9,7 +9,7 @@ interface IconProps {
 const Icon = ({ icon, size = 24 }: IconProps) => {
   return (
     <div
-      className={`flex items-center justify-center`}
+      className={`inline-flex items-center justify-center`}
       style={{ width: size, height: size }}
     >
       <FontAwesomeIcon icon={icon} className="size-full text-highlight-1" />

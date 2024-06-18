@@ -8,7 +8,7 @@ interface NavigationProps {
 
 const Navitagion = ({ right, title, left }: NavigationProps) => {
   return (
-    <nav className="flex h-[56px] w-full items-center border-b border-neutral-light-4 px-[24px]">
+    <nav className="relative flex h-[56px] w-full items-center border-b border-neutral-light-4 px-[24px]">
       <div className="flex flex-1">{right}</div>
       <div className="text-center">
         <h1 className="text-heading-md">{title}</h1>
