@@ -10,6 +10,7 @@ import { ToastContextProvider } from './contexts/ToastContext';
 import { AuthenticationContextProvider } from './contexts/AuthenticationContext';
 import LoginCallbackPage from './pages/LoginCallbackPage';
 import Private from './components/route/Private';
+import HomePage from './pages/HomePage';
 
 const queryClient = new QueryClient();
 
@@ -38,7 +39,7 @@ function App() {
                     </Private>
                   }
                 >
-                  <Route path="/" element={<h1>Home</h1>} />
+                  <Route path="/" element={<HomePage />} />
                 </Route>
               </Routes>
             </BrowserRouter>
