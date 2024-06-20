@@ -17,10 +17,10 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <>
-      <AxiosConfig />
       <QueryClientProvider client={queryClient}>
         <ToastContextProvider>
           <AuthenticationContextProvider>
+            <AxiosConfig />
             <BrowserRouter>
               <Routes>
                 <Route element={<Layout />}>
