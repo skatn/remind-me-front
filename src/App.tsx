@@ -11,6 +11,7 @@ import { AuthenticationContextProvider } from './contexts/AuthenticationContext'
 import LoginCallbackPage from './pages/LoginCallbackPage';
 import Private from './components/route/Private';
 import HomePage from './pages/HomePage';
+import SubjectListPage from './pages/SubjectListPage';
 
 const queryClient = new QueryClient();
 
@@ -41,7 +42,7 @@ function App() {
                   }
                 >
                   <Route path="/" element={<HomePage />} />
-                  <Route path="/subjects" element={<>Subjects</>} />
+                  <Route path="/subjects" element={<SubjectListPage />} />
                 </Route>
               </Routes>
             </BrowserRouter>
