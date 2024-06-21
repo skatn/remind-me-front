@@ -9,7 +9,7 @@ import useIntersect from '../intersect/useIntersect';
 
 const useFetchSubjectList = (request: SubjectListGetRequest) => {
   const query = useInfiniteQuery({
-    queryKey: ['subject list', request.size, request.cursor, request.title],
+    queryKey: ['subject list', request.size],
     queryFn: async ({ pageParam }) => {
       const response = await api.get<SubjectListGetResponse>('/api/subjects', {
         params: { ...request, cursor: pageParam },
