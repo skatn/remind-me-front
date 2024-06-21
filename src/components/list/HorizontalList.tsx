@@ -31,7 +31,7 @@ const HorizontalList = ({
           </button>
         )}
       </div>
-      <div className="mt-[8px] flex w-full gap-[10px] overflow-x-scroll px-[24px]">
+      <div className="scrollbar-hide mt-[8px] flex w-full gap-[10px] overflow-x-scroll px-[24px]">
         {children}
       </div>
     </div>

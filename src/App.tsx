@@ -32,6 +32,7 @@ function App() {
                   />
                   <Route path="*" element={<NotFoundPage />} />
                 </Route>
+
                 <Route
                   element={
                     <Private>
@@ -40,6 +41,7 @@ function App() {
                   }
                 >
                   <Route path="/" element={<HomePage />} />
+                  <Route path="/subjects" element={<>Subjects</>} />
                 </Route>
               </Routes>
             </BrowserRouter>
