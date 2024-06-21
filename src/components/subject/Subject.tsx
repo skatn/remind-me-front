@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom';
 
 interface SubjectProps {
   subject: SubjectType;
+  className?: string;
 }
 
-const Subject = ({ subject }: SubjectProps) => {
+const Subject = ({ subject, className }: SubjectProps) => {
   const navigate = useNavigate();
 
   return (
     <div
-      className="relative flex size-[110px] min-h-[110px] min-w-[110px] select-none items-center justify-center rounded-[8px] p-[8px] hover:cursor-pointer"
+      className={`relative flex select-none items-center justify-center rounded-[8px] p-[8px] hover:cursor-pointer ${className}`}
       style={{ background: `#${subject.color}` }}
       onClick={() => navigate(`/subjects/${subject.id}`)}
     >

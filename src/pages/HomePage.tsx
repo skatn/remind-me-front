@@ -22,6 +22,7 @@ const HomePage = () => {
             color: 'D5E05B',
             questionCount: 40,
           }}
+          className="size-[110px] flex-shrink-0"
         />
         <Subject
           subject={{
@@ -30,6 +31,7 @@ const HomePage = () => {
             color: 'D5E05B',
             questionCount: 40,
           }}
+          className="size-[110px] flex-shrink-0"
         />
         <Subject
           subject={{
@@ -38,6 +40,7 @@ const HomePage = () => {
             color: 'D5E05B',
             questionCount: 40,
           }}
+          className="size-[110px] flex-shrink-0"
         />
       </HorizontalList>
 
@@ -50,7 +53,11 @@ const HomePage = () => {
         actionText="더보기"
       >
         {subjects.map((subject) => (
-          <Subject key={subject.id} subject={subject} />
+          <Subject
+            key={subject.id}
+            subject={subject}
+            className="size-[110px] flex-shrink-0"
+          />
         ))}
       </HorizontalList>
     </div>
