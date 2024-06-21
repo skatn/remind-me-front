@@ -23,7 +23,13 @@ const Subject = ({ subject, className, enableEdit }: SubjectProps) => {
         {subject.questionCount} 문제
       </span>
       {enableEdit && (
-        <button className="absolute end-[11px] top-[8px] size-[16px]">
+        <button
+          className="absolute end-[11px] top-[8px] size-[16px]"
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate(`/subjects/${subject.id}/edit`);
+          }}
+        >
           <Icon icon={faPen} />
         </button>
       )}
