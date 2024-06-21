@@ -6,8 +6,9 @@
 
 @layer base {
     html {
-        font-family: 'Roboto', system-ui, sans-serif;
-        @apply text-neutral-dark-1 break-words;
+        /*font-family: 'Roboto', sans-serif, system-ui;*/
+        /*font-style: normal;*/
+        @apply text-neutral-dark-1 break-words font-sans;
     }
 
     #root * {
@@ -25,22 +26,27 @@
     .text-heading-xl {
         font-size: 1.5rem;
         font-weight: 900;
+        line-height: 1.756rem;
     }
     .text-heading-lg {
         font-size: 1.125rem;
         font-weight: 900;
+        line-height: 1.319rem;
     }
     .text-heading-md {
         font-size: 1rem;
         font-weight: 900;
+        line-height: 1.175rem;
     }
     .text-heading-sm {
         font-size: 0.875rem;
         font-weight: 800;
+        line-height: 1.025rem;
     }
     .text-heading-xs {
         font-size: 0.75rem;
         font-weight: 700;
+        line-height: 0.881rem;
     }
 
     .text-body-xl {

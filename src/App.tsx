@@ -10,16 +10,17 @@ import { ToastContextProvider } from './contexts/ToastContext';
 import { AuthenticationContextProvider } from './contexts/AuthenticationContext';
 import LoginCallbackPage from './pages/LoginCallbackPage';
 import Private from './components/route/Private';
+import HomePage from './pages/HomePage';
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <>
-      <AxiosConfig />
       <QueryClientProvider client={queryClient}>
         <ToastContextProvider>
           <AuthenticationContextProvider>
+            <AxiosConfig />
             <BrowserRouter>
               <Routes>
                 <Route element={<Layout />}>
@@ -31,6 +32,7 @@ function App() {
                   />
                   <Route path="*" element={<NotFoundPage />} />
                 </Route>
+
                 <Route
                   element={
                     <Private>
@@ -38,7 +40,8 @@ function App() {
                     </Private>
                   }
                 >
-                  <Route path="/" element={<h1>Home</h1>} />
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/subjects" element={<>Subjects</>} />
                 </Route>
               </Routes>
             </BrowserRouter>
