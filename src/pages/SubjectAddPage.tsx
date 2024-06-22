@@ -50,6 +50,7 @@ const SubjectAddPage = () => {
         <h1 className="text-heading-md mb-[8px]">표지 색상</h1>
         <ColorSelector
           name="color"
+          value={params.color}
           onChange={(color) => setParams((prev) => ({ ...prev, color }))}
         />
         <Input

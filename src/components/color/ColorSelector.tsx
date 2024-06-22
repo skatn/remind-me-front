@@ -42,7 +42,7 @@ const ColorSelector = ({
             name={name}
             value={color}
             onChange={(e) => onChange(e.currentTarget.value)}
-            checked={value ? value === color : undefined}
+            checked={value === color}
             className="hidden"
           />
           <Icon

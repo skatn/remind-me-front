@@ -5,33 +5,21 @@ import ColorSelector from '../components/color/ColorSelector';
 import Input from '../components/input/text/Input';
 import OutlineButton from '../components/input/button/OutlineButton';
 import Button from '../components/input/button/Button';
-import React, { useContext, useEffect, useState } from 'react';
-import { SubjectUpdateRequest } from '../types/subject';
+import React, { useContext } from 'react';
 import useInvalid from '../hooks/valid/useInvalid';
 import { ToastContext } from '../contexts/ToastContext';
-import useFetchSubject from '../hooks/subject/useFetchSubject';
 import useUpdateSubject from '../hooks/subject/useUpdateSubject';
 
 const SubjectUpdatePage = () => {
   const { subjectId } = useParams();
-  const { mutate } = useUpdateSubject(Number(subjectId));
-  const [params, setParams] = useState<SubjectUpdateRequest>({
-    title: '',
-    color: '',
-  });
+  const { params, setParams, mutate } = useUpdateSubject(Number(subjectId));
   const { invalidField, check } = useInvalid({
     title: [],
     color: [],
   });
+
   const { addToast } = useContext(ToastContext);
   const navigate = useNavigate();
-  const { data: subject, isLoading } = useFetchSubject(Number(subjectId));
-
-  useEffect(() => {
-    if (!isLoading && subject) {
-      setParams({ color: subject.color, title: subject.title });
-    }
-  }, [subject, isLoading, setParams]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
