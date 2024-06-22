@@ -6,7 +6,7 @@ interface NavigationProps {
   left?: React.ReactNode;
 }
 
-const Navitagion = ({ right, title, left }: NavigationProps) => {
+const Navigation = ({ right, title, left }: NavigationProps) => {
   return (
     <nav className="relative flex h-[56px] w-full items-center border-b border-neutral-light-4 px-[24px]">
       <div className="flex flex-1">{right}</div>
@@ -18,4 +18,4 @@ const Navitagion = ({ right, title, left }: NavigationProps) => {
   );
 };
 
-export default Navitagion;
+export default Navigation;
