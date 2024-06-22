@@ -13,7 +13,7 @@ interface InputProps {
 
 const Input = ({
   title,
-  type,
+  type = 'text',
   name,
   value,
   placeholder,
@@ -26,7 +26,7 @@ const Input = ({
   return (
     <div className={`input-container ${className}`}>
       {title && (
-        <label htmlFor={name} className="text-heading-xs">
+        <label htmlFor={name} className="text-heading-md">
           {title}
         </label>
       )}

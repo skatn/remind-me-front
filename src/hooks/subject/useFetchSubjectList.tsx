@@ -2,7 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import {
   SubjectListGetRequest,
   SubjectListGetResponse,
-} from '../../types/subjectType';
+} from '../../types/subject';
 import { api } from '../../configs/AxiosConfig';
 import { useMemo } from 'react';
 import useIntersect from '../intersect/useIntersect';
