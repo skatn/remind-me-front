@@ -4,6 +4,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 interface ColorSelectorProps {
   colors?: string[];
   name?: string;
+  value?: string;
   onChange?: (value: string) => void;
 }
 
@@ -23,6 +24,7 @@ const defaultColors = [
 const ColorSelector = ({
   colors = defaultColors,
   name = 'color',
+  value,
   onChange = () => {},
 }: ColorSelectorProps) => {
   return (
@@ -40,6 +42,7 @@ const ColorSelector = ({
             name={name}
             value={color}
             onChange={(e) => onChange(e.currentTarget.value)}
+            checked={value ? value === color : undefined}
             className="hidden"
           />
           <Icon

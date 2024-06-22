@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { SubjectAddRequest, SubjectAddResponse } from '../../types/subject';
+import { SubjectUpdateRequest } from '../../types/subject';
 import { api } from '../../configs/AxiosConfig';
 
-const useAddSubject = () => {
+const useAddSubject = (subjectId: number) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (request: SubjectAddRequest) => {
-      return api.post<SubjectAddResponse>('/api/subjects', request);
+    mutationFn: (request: SubjectUpdateRequest) => {
+      return api.patch(`/api/subjects/${subjectId}`, request);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['subject list'] });

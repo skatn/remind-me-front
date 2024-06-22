@@ -13,8 +13,15 @@ import Private from './components/route/Private';
 import HomePage from './pages/HomePage';
 import SubjectListPage from './pages/SubjectListPage';
 import SubjectAddPage from './pages/SubjectAddPage';
+import SubjectUpdatePage from './pages/SubjectUpdatePage';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+    },
+  },
+});
 
 function App() {
   return (
@@ -45,6 +52,10 @@ function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/subjects" element={<SubjectListPage />} />
                   <Route path="/subjects/add" element={<SubjectAddPage />} />
+                  <Route
+                    path="/subjects/:subjectId/edit"
+                    element={<SubjectUpdatePage />}
+                  />
                 </Route>
               </Routes>
             </BrowserRouter>

@@ -5,6 +5,11 @@ export interface SubjectAddRequest {
   color: string;
 }
 
+export interface SubjectUpdateRequest {
+  title: string;
+  color: string;
+}
+
 export interface SubjectAddResponse {
   subjectId: number;
 }
