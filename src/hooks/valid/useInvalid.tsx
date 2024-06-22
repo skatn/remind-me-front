@@ -21,7 +21,7 @@ const useInvalid = (initialState: InvalidField) => {
             : [error.message];
         });
 
-        setInvalidField({ ...errors });
+        setInvalidField({ ...initialState, ...errors });
 
         return errors;
       }

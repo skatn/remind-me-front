@@ -12,6 +12,7 @@ import LoginCallbackPage from './pages/LoginCallbackPage';
 import Private from './components/route/Private';
 import HomePage from './pages/HomePage';
 import SubjectListPage from './pages/SubjectListPage';
+import SubjectAddPage from './pages/SubjectAddPage';
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ function App() {
                 >
                   <Route path="/" element={<HomePage />} />
                   <Route path="/subjects" element={<SubjectListPage />} />
+                  <Route path="/subjects/add" element={<SubjectAddPage />} />
                 </Route>
               </Routes>
             </BrowserRouter>

@@ -16,7 +16,7 @@ const Button = ({
   leftIcon,
   rightIcon,
   className,
-  type,
+  type = 'submit',
   onClick,
 }: ButtonProps) => {
   return (

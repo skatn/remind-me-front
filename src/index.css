@@ -89,4 +89,8 @@
     .input-primary {
         @apply rounded-[0.25rem] accent-highlight-1 py-[0.75rem] px-[1rem] outline-none border-neutral-light-1 border-[0.094rem] focus:border-highlight-1 caret-highlight-1 text-body-md placeholder-neutral-dark-5 disabled:bg-neutral-light-4 autofill:bg-none
     }
+
+    input[type="radio"]:not(:checked) ~ .check {
+        display: none;
+    }
 }

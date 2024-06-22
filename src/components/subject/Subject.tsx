@@ -1,4 +1,4 @@
-import { SubjectType } from '../../types/subjectType';
+import { Subject as SubjectType } from '../../types/subject';
 import { useNavigate } from 'react-router-dom';
 import Icon from '../icon/Icon';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
