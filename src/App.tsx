@@ -14,6 +14,7 @@ import HomePage from './pages/HomePage';
 import SubjectListPage from './pages/SubjectListPage';
 import SubjectAddPage from './pages/SubjectAddPage';
 import SubjectUpdatePage from './pages/SubjectUpdatePage';
+import QuestionListPage from './pages/QuestionListPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -55,6 +56,10 @@ function App() {
                   <Route
                     path="/subjects/:subjectId/edit"
                     element={<SubjectUpdatePage />}
+                  />
+                  <Route
+                    path="/subjects/:subjectId"
+                    element={<QuestionListPage />}
                   />
                 </Route>
               </Routes>
