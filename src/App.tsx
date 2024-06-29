@@ -61,6 +61,14 @@ function App() {
                     path="/subjects/:subjectId"
                     element={<QuestionListPage />}
                   />
+                  <Route
+                    path="/subjects/:subjetId/add"
+                    element={<>문제집 추가</>}
+                  />
+                  <Route
+                    path="/subjects/:subjetId/manage"
+                    element={<>문제집 관리</>}
+                  />
                 </Route>
               </Routes>
             </BrowserRouter>

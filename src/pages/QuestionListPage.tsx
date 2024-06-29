@@ -1,10 +1,9 @@
 import Navigation from '../components/navigation/Navigation';
 import BackButton from '../components/navigation/BackButton';
-import { useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import Icon from '../components/icon/Icon';
 import { faGear, faPlus } from '@fortawesome/free-solid-svg-icons';
 import useFetchQuestionList from '../hooks/question/useFetchQuestionList';
-import Button from '../components/input/button/Button';
 import Question from '../components/question/Question';
 
 const QuestionListPage = () => {
@@ -20,7 +19,11 @@ const QuestionListPage = () => {
       <Navigation
         title={location.state?.subject.title}
         left={<BackButton />}
-        right={<Icon icon={faGear} size={22} />}
+        right={
+          <Link to={`/subjects/${Number(params.subjectId)}/manage`}>
+            <Icon icon={faGear} size={22} />
+          </Link>
+        }
       />
 
       {content.length === 0 && <h1>문제가 없어요</h1>}
@@ -31,9 +34,12 @@ const QuestionListPage = () => {
         ))}
       </div>
 
-      <Button className="absolute bottom-[24px] right-[24px] size-[50px] rounded-full p-0">
+      <Link
+        to={`/subjects/${Number(params.subjectId)}/add`}
+        className="absolute bottom-[24px] right-[24px] flex size-[50px] items-center justify-center rounded-full bg-highlight-1 p-0"
+      >
         <Icon icon={faPlus} className="text-neutral-light-5" size={22} />
-      </Button>
+      </Link>
     </div>
   );
 };
