@@ -16,7 +16,9 @@ const Subject = ({ subject, className, enableEdit }: SubjectProps) => {
     <div
       className={`relative flex aspect-square select-none items-center justify-center rounded-[8px] p-[8px] hover:cursor-pointer ${className}`}
       style={{ background: `#${subject.color}` }}
-      onClick={() => navigate(`/subjects/${subject.id}`)}
+      onClick={() =>
+        navigate(`/subjects/${subject.id}`, { state: { subject: subject } })
+      }
     >
       <span className="text-heading-sm">{subject.title}</span>
       <span className="text-body-sm absolute bottom-[8px] end-[11px] text-neutral-dark-5">
