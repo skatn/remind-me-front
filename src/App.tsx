@@ -15,6 +15,7 @@ import SubjectListPage from './pages/SubjectListPage';
 import SubjectAddPage from './pages/SubjectAddPage';
 import SubjectUpdatePage from './pages/SubjectUpdatePage';
 import QuestionListPage from './pages/QuestionListPage';
+import QuestionAddPage from './pages/QuestionAddPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -62,8 +63,8 @@ function App() {
                     element={<QuestionListPage />}
                   />
                   <Route
-                    path="/subjects/:subjetId/add"
-                    element={<>문제집 추가</>}
+                    path="/subjects/:subjetId/questions/add"
+                    element={<QuestionAddPage />}
                   />
                   <Route
                     path="/subjects/:subjetId/manage"
