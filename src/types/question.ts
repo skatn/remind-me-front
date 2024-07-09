@@ -22,6 +22,7 @@ export interface QuestionAddRequest {
   question: string;
   questionType: QuestionType;
   answers: Answer[];
+  explanation: string;
 }
 
 export interface QuestionAddResponse {

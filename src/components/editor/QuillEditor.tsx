@@ -1,9 +1,34 @@
 import ReactQuill from 'react-quill';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
+import { api } from '../../configs/AxiosConfig';
 
-const QuillEditor = () => {
+interface QuillEditorProps {
+  onChange?: (value: string) => void;
+}
+
+const QuillEditor = ({ onChange }: QuillEditorProps) => {
   const [value, setValue] = useState('');
+  const quillRef = useRef<any>(null);
+
+  const imageHandler = () => {
+    const input = document.createElement('input');
+
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    input.click();
+    input.onchange = async () => {
+      const file: any = input && input.files ? input.files[0] : null;
+      const formData = new FormData();
+      formData.append('image', file);
+      const response = await api.post<{ url: string }>('/images', formData);
+      const url = `${process.env.REACT_APP_HOST}${response.data.url}`;
+
+      const editor = quillRef.current.getEditor();
+      const range = editor.getSelection();
+      editor.insertEmbed(range.index, 'image', url);
+    };
+  };
 
   const modules = useMemo(
     () => ({
@@ -15,6 +40,9 @@ const QuillEditor = () => {
           [{ list: 'ordered' }, { list: 'bullet' }, { align: [] }],
           ['image'],
         ],
+        handlers: {
+          image: imageHandler,
+        },
       },
     }),
     [],
@@ -23,9 +51,15 @@ const QuillEditor = () => {
   return (
     <>
       <ReactQuill
+        ref={quillRef}
         theme="snow"
         value={value}
-        onChange={setValue}
+        onChange={(value) => {
+          setValue(value);
+          if (onChange) {
+            onChange(value);
+          }
+        }}
         modules={modules}
       />
     </>

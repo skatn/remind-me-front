@@ -63,11 +63,11 @@ function App() {
                     element={<QuestionListPage />}
                   />
                   <Route
-                    path="/subjects/:subjetId/questions/add"
+                    path="/subjects/:subjectId/questions/add"
                     element={<QuestionAddPage />}
                   />
                   <Route
-                    path="/subjects/:subjetId/manage"
+                    path="/subjects/:subjectId/manage"
                     element={<>문제집 관리</>}
                   />
                 </Route>
