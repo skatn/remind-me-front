@@ -4,7 +4,7 @@ import MultiLineInput from '../components/input/text/MultiLineInput';
 import Button from '../components/input/button/Button';
 import Icon from '../components/icon/Icon';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useSubmitQuestion from '../hooks/question/useSubmitQuestion';
 import useFetchQuestion from '../hooks/question/useFetchQuestion';
 import { useState } from 'react';
@@ -14,6 +14,7 @@ import OutlineButton from '../components/input/button/OutlineButton';
 import useInvalid from '../hooks/valid/useInvalid';
 
 const QuestionSubmitPage = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const questionId = Number(params.questionId);
   const { data: question } = useFetchQuestion(questionId);
@@ -136,7 +137,19 @@ const QuestionSubmitPage = () => {
             {modalState.message}
           </p>
           <div className="mt-[20px] flex w-full gap-[8px]">
-            <OutlineButton className="flex-1">풀이 보기</OutlineButton>
+            <OutlineButton
+              className="flex-1"
+              onClick={() => {
+                navigate(
+                  `/subjects/${params.subjectId}/questions/${params.questionId}/explain`,
+                  {
+                    state: { explanation: question?.explanation },
+                  },
+                );
+              }}
+            >
+              풀이 보기
+            </OutlineButton>
             <Button className="flex-1" onClick={closeModal}>
               확인
             </Button>
