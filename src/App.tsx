@@ -16,6 +16,7 @@ import SubjectAddPage from './pages/SubjectAddPage';
 import SubjectUpdatePage from './pages/SubjectUpdatePage';
 import QuestionListPage from './pages/QuestionListPage';
 import QuestionAddPage from './pages/QuestionAddPage';
+import QuestionSubmitPage from './pages/QuestionSubmitPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -69,6 +70,10 @@ function App() {
                   <Route
                     path="/subjects/:subjectId/manage"
                     element={<>문제집 관리</>}
+                  />
+                  <Route
+                    path="/subjects/:subjectId/questions/:questionId"
+                    element={<QuestionSubmitPage />}
                   />
                 </Route>
               </Routes>

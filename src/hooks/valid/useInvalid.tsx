@@ -5,6 +5,10 @@ import { AxiosError } from 'axios';
 const useInvalid = (initialState: InvalidField) => {
   const [invalidField, setInvalidField] = useState<InvalidField>(initialState);
 
+  const clear = () => {
+    setInvalidField({ ...initialState });
+  };
+
   const check = (error: Error) => {
     setInvalidField({ ...initialState, globalErrors: [] });
 
@@ -28,7 +32,7 @@ const useInvalid = (initialState: InvalidField) => {
     }
   };
 
-  return { invalidField, check };
+  return { invalidField, check, clear };
 };
 
 export default useInvalid;

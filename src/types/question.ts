@@ -30,6 +30,24 @@ export interface QuestionAddResponse {
 }
 
 export interface Answer {
+  id?: number;
   answer: string;
   isAnswer: boolean;
+}
+
+export interface QuestionSubmitRequest {
+  questionId: number;
+  submittedAnswer: string;
+}
+
+export interface QuestionSubmitResponse {
+  correct: boolean;
+}
+
+export interface QuestionGetResponse {
+  id: number;
+  question: string;
+  questionType: QuestionType;
+  explanation: string;
+  answers: Answer[];
 }

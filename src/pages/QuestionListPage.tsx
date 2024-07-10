@@ -30,7 +30,12 @@ const QuestionListPage = () => {
 
       <div className="flex flex-col gap-[10px] p-[24px]">
         {content.map((question) => (
-          <Question key={question.id} question={question} />
+          <Link
+            key={question.id}
+            to={`/subjects/${Number(params.subjectId)}/questions/${question.id}`}
+          >
+            <Question question={question} />
+          </Link>
         ))}
       </div>
 
