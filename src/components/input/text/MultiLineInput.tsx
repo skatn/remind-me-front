@@ -46,7 +46,7 @@ const MultiLineInput = ({
         name={name}
         value={value}
         placeholder={placeholder}
-        className={`input-primary overflow-hidden ${invalid && 'border-support-error-1 focus:border-support-error-1'}`}
+        className={`input-primary resize-none overflow-hidden ${invalid && 'border-support-error-1 focus:border-support-error-1'}`}
         disabled={disabled}
         onChange={(e) => {
           const textarea = ref.current;

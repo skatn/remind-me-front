@@ -20,6 +20,7 @@ export type QuestionType = 'CHOICE' | 'DESCRIPTIVE';
 export interface QuestionAddRequest {
   subjectId: number;
   question: string;
+  questionImage: string;
   questionType: QuestionType;
   answers: Answer[];
   explanation: string;

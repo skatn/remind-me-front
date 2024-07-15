@@ -13,6 +13,8 @@ import Button from '../../components/input/button/Button';
 import MultiLineInput from '../../components/input/text/MultiLineInput';
 import useInvalid from '../../hooks/valid/useInvalid';
 import { ToastContext } from '../../contexts/ToastContext';
+import imageUploadApi from '../../api/imageUploadApi';
+import { concatHostUrl } from '../../utils/utils';
 
 const QuestionAddPage = () => {
   const location = useLocation();
@@ -29,6 +31,7 @@ const QuestionAddPage = () => {
   const [param, setParam] = useState<QuestionAddRequest>({
     subjectId: Number(params.subjectId),
     question: '',
+    questionImage: '',
     questionType: 'CHOICE',
     answers: [{ answer: '', isAnswer: true }],
     explanation: '',
@@ -53,6 +56,19 @@ const QuestionAddPage = () => {
       answers: [{ answer: '', isAnswer: true }],
       questionType,
     }));
+  };
+
+  const handleChangeQuestionImage = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    if (e.currentTarget.files != null) {
+      const file = e.currentTarget.files[0];
+      const questionImage = await imageUploadApi(file);
+      setParam((prev) => ({
+        ...prev,
+        questionImage,
+      }));
+    }
   };
 
   const handleSubmit = () => {
@@ -108,7 +124,42 @@ const QuestionAddPage = () => {
         )}
 
         <h1 className="text-heading-md mb-[8px] mt-[40px]">질문</h1>
-        <QuillEditor onChange={handleChangeQuestion} />
+        <MultiLineInput onChange={handleChangeQuestion} className="w-full" />
+        {param.questionImage && (
+          <img
+            src={concatHostUrl(param.questionImage)}
+            alt="question"
+            className="mt-[10px] aspect-video object-cover"
+          />
+        )}
+
+        {!param.questionImage && (
+          <label htmlFor="image" className="btn-primary mt-[10px]">
+            이미지 추가
+          </label>
+        )}
+        {param.questionImage && (
+          <div className="mt-[10px] flex gap-[10px]">
+            <OutlineButton
+              className="flex-1"
+              onClick={() => {
+                setParam((prev) => ({ ...prev, questionImage: '' }));
+              }}
+            >
+              이미지 삭제
+            </OutlineButton>
+            <label htmlFor="image" className="btn-primary flex-1">
+              이미지 변경
+            </label>
+          </div>
+        )}
+        <input
+          id="image"
+          type="file"
+          accept="image/*"
+          onChange={handleChangeQuestionImage}
+          className="hidden"
+        />
         {invalidField.question.length > 0 && (
           <p className="text-body-sm mt-[8px] text-support-error-1">
             {invalidField.question.join('\n')}

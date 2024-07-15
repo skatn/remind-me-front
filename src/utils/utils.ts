@@ -21,3 +21,7 @@ export const stringToDate = (
 ) => {
   return dayjs(date, format).toDate();
 };
+
+export const concatHostUrl = (url: string) => {
+  return process.env.REACT_APP_HOST + url;
+};
