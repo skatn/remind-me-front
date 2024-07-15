@@ -9,7 +9,7 @@ import Question from '../components/question/Question';
 const QuestionListPage = () => {
   const location = useLocation();
   const params = useParams();
-  const { content } = useFetchQuestionList({
+  const { content, ref } = useFetchQuestionList({
     size: 10,
     subjectId: Number(params.subjectId),
   });
@@ -29,10 +29,17 @@ const QuestionListPage = () => {
       {content.length === 0 && <h1>문제가 없어요</h1>}
 
       <div className="flex flex-col gap-[10px] p-[24px]">
-        {content.map((question) => (
-          <Question key={question.id} question={question} />
+        {content.map((question, index) => (
+          <Link
+            key={question.id}
+            to={`/subjects/${Number(params.subjectId)}/questions/${question.id}`}
+          >
+            <Question question={question} index={index} />
+          </Link>
         ))}
       </div>
+
+      <div ref={ref}></div>
 
       <Link
         to={`/subjects/${Number(params.subjectId)}/questions/add`}
