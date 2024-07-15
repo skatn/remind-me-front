@@ -1,10 +1,10 @@
-import Navigation from '../components/navigation/Navigation';
-import BackButton from '../components/navigation/BackButton';
+import Navigation from '../../components/navigation/Navigation';
+import BackButton from '../../components/navigation/BackButton';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import Icon from '../components/icon/Icon';
+import Icon from '../../components/icon/Icon';
 import { faGear, faPlus } from '@fortawesome/free-solid-svg-icons';
-import useFetchQuestionList from '../hooks/question/useFetchQuestionList';
-import Question from '../components/question/Question';
+import useFetchQuestionList from '../../hooks/question/useFetchQuestionList';
+import Question from '../../components/question/Question';
 
 const QuestionListPage = () => {
   const location = useLocation();

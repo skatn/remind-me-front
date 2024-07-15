@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
-import Input from '../components/input/text/Input';
-import Button from '../components/input/button/Button';
-import OutlineButton from '../components/input/button/OutlineButton';
-import { SignupRequest } from '../types/auth';
-import useSignup from '../hooks/auth/useSignup';
+import Input from '../../components/input/text/Input';
+import Button from '../../components/input/button/Button';
+import OutlineButton from '../../components/input/button/OutlineButton';
+import { SignupRequest } from '../../types/auth';
+import useSignup from '../../hooks/auth/useSignup';
 import { useNavigate } from 'react-router-dom';
-import useInvalid from '../hooks/valid/useInvalid';
-import { ToastContext } from '../contexts/ToastContext';
+import useInvalid from '../../hooks/valid/useInvalid';
+import { ToastContext } from '../../contexts/ToastContext';
 
 const SignupPage = () => {
   const [signupRequest, setSignupRequest] = useState<SignupRequest>({

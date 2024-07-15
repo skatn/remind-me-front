@@ -1,9 +1,9 @@
-import Navigation from '../components/navigation/Navigation';
-import MenuButton from '../components/navigation/MenuButton';
-import Banner from '../components/banner/Banner';
-import HorizontalList from '../components/list/HorizontalList';
-import Subject from '../components/subject/Subject';
-import useFetchSubjectList from '../hooks/subject/useFetchSubjectList';
+import Navigation from '../../components/navigation/Navigation';
+import MenuButton from '../../components/navigation/MenuButton';
+import Banner from '../../components/banner/Banner';
+import HorizontalList from '../../components/list/HorizontalList';
+import Subject from '../../components/subject/Subject';
+import useFetchSubjectList from '../../hooks/subject/useFetchSubjectList';
 import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {

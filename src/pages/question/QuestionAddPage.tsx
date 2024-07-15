@@ -1,18 +1,18 @@
-import Navigation from '../components/navigation/Navigation';
+import Navigation from '../../components/navigation/Navigation';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import BackButton from '../components/navigation/BackButton';
-import useAddQuestion from '../hooks/question/useAddQuestion';
+import BackButton from '../../components/navigation/BackButton';
+import useAddQuestion from '../../hooks/question/useAddQuestion';
 import { useCallback, useContext, useState } from 'react';
-import { Answer, QuestionAddRequest, QuestionType } from '../types/question';
-import QuillEditor from '../components/editor/QuillEditor';
-import Icon from '../components/icon/Icon';
+import { Answer, QuestionAddRequest, QuestionType } from '../../types/question';
+import QuillEditor from '../../components/editor/QuillEditor';
+import Icon from '../../components/icon/Icon';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import QuestionChoiceInput from '../components/question/QuestionChoiceInput';
-import OutlineButton from '../components/input/button/OutlineButton';
-import Button from '../components/input/button/Button';
-import MultiLineInput from '../components/input/text/MultiLineInput';
-import useInvalid from '../hooks/valid/useInvalid';
-import { ToastContext } from '../contexts/ToastContext';
+import QuestionChoiceInput from '../../components/question/QuestionChoiceInput';
+import OutlineButton from '../../components/input/button/OutlineButton';
+import Button from '../../components/input/button/Button';
+import MultiLineInput from '../../components/input/text/MultiLineInput';
+import useInvalid from '../../hooks/valid/useInvalid';
+import { ToastContext } from '../../contexts/ToastContext';
 
 const QuestionAddPage = () => {
   const location = useLocation();
