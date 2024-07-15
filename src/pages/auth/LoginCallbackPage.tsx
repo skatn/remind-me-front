@@ -1,10 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
-import { api } from '../configs/AxiosConfig';
-import { MemberProfile } from '../types/member';
-import { ToastContext } from '../contexts/ToastContext';
-import { AuthenticationContext } from '../contexts/AuthenticationContext';
-import { ErrorResponse } from '../types/axios';
+import { api } from '../../configs/AxiosConfig';
+import { MemberProfile } from '../../types/member';
+import { ToastContext } from '../../contexts/ToastContext';
+import { AuthenticationContext } from '../../contexts/AuthenticationContext';
+import { ErrorResponse } from '../../types/axios';
 import { AxiosError } from 'axios';
 
 const LoginCallbackPage = () => {

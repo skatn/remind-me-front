@@ -1,23 +1,23 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
+import LoginPage from './pages/auth/LoginPage';
 import Layout from './layouts/Layout';
-import NotFoundPage from './pages/NotFoundPage';
-import SignupPage from './pages/SignupPage';
+import NotFoundPage from './pages/error/NotFoundPage';
+import SignupPage from './pages/auth/SignupPage';
 import { AxiosConfig } from './configs/AxiosConfig';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ToastContextProvider } from './contexts/ToastContext';
 import { AuthenticationContextProvider } from './contexts/AuthenticationContext';
-import LoginCallbackPage from './pages/LoginCallbackPage';
+import LoginCallbackPage from './pages/auth/LoginCallbackPage';
 import Private from './components/route/Private';
-import HomePage from './pages/HomePage';
-import SubjectListPage from './pages/SubjectListPage';
-import SubjectAddPage from './pages/SubjectAddPage';
-import SubjectUpdatePage from './pages/SubjectUpdatePage';
-import QuestionListPage from './pages/QuestionListPage';
-import QuestionAddPage from './pages/QuestionAddPage';
-import QuestionSubmitPage from './pages/QuestionSubmitPage';
-import ExplainPage from './pages/ExplainPage';
+import HomePage from './pages/home/HomePage';
+import SubjectListPage from './pages/subject/SubjectListPage';
+import SubjectAddPage from './pages/subject/SubjectAddPage';
+import SubjectUpdatePage from './pages/subject/SubjectUpdatePage';
+import QuestionListPage from './pages/question/QuestionListPage';
+import QuestionAddPage from './pages/question/QuestionAddPage';
+import QuestionSubmitPage from './pages/question/QuestionSubmitPage';
+import ExplainPage from './pages/question/ExplainPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {

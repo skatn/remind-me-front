@@ -1,11 +1,11 @@
-import Navigation from '../components/navigation/Navigation';
-import BackButton from '../components/navigation/BackButton';
-import Button from '../components/input/button/Button';
-import Search from '../components/input/text/Search';
-import Subject from '../components/subject/Subject';
-import useFetchSubjectList from '../hooks/subject/useFetchSubjectList';
+import Navigation from '../../components/navigation/Navigation';
+import BackButton from '../../components/navigation/BackButton';
+import Button from '../../components/input/button/Button';
+import Search from '../../components/input/text/Search';
+import Subject from '../../components/subject/Subject';
+import useFetchSubjectList from '../../hooks/subject/useFetchSubjectList';
 import { useState } from 'react';
-import { SubjectListGetRequest } from '../types/subject';
+import { SubjectListGetRequest } from '../../types/subject';
 import { useNavigate } from 'react-router-dom';
 
 const SubjectListPage = () => {

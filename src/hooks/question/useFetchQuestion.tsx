@@ -10,6 +10,7 @@ const useFetchQuestion = (questionId: number) => {
       const response = await api.get<QuestionGetResponse>(
         `/api/questions/${questionId}`,
       );
+
       return response.data;
     },
   });

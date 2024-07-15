@@ -1,18 +1,19 @@
-import Navigation from '../components/navigation/Navigation';
-import BackButton from '../components/navigation/BackButton';
-import MultiLineInput from '../components/input/text/MultiLineInput';
-import Button from '../components/input/button/Button';
-import Icon from '../components/icon/Icon';
+import Navigation from '../../components/navigation/Navigation';
+import BackButton from '../../components/navigation/BackButton';
+import MultiLineInput from '../../components/input/text/MultiLineInput';
+import Button from '../../components/input/button/Button';
+import Icon from '../../components/icon/Icon';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useParams } from 'react-router-dom';
-import useSubmitQuestion from '../hooks/question/useSubmitQuestion';
-import useFetchQuestion from '../hooks/question/useFetchQuestion';
+import useSubmitQuestion from '../../hooks/question/useSubmitQuestion';
+import useFetchQuestion from '../../hooks/question/useFetchQuestion';
 import { useState } from 'react';
-import { QuestionSubmitRequest } from '../types/question';
-import Modal from '../components/modal/Modal';
-import OutlineButton from '../components/input/button/OutlineButton';
-import useInvalid from '../hooks/valid/useInvalid';
-import useQuestionNavigation from '../hooks/question/useQuestionNavigation';
+import { QuestionSubmitRequest } from '../../types/question';
+import Modal from '../../components/modal/Modal';
+import OutlineButton from '../../components/input/button/OutlineButton';
+import useInvalid from '../../hooks/valid/useInvalid';
+import useQuestionNavigation from '../../hooks/question/useQuestionNavigation';
+import { concatHostUrl } from '../../utils/utils';
 
 const QuestionSubmitPage = () => {
   const navigate = useNavigate();
@@ -78,6 +79,13 @@ const QuestionSubmitPage = () => {
             <span>{questionNavStatus.index + 1}.</span>
             <p>{question?.question}</p>
           </div>
+          {question?.questionImage && (
+            <img
+              src={concatHostUrl(question?.questionImage)}
+              alt="question"
+              className="mt-[10px] aspect-video object-cover"
+            />
+          )}
 
           {question?.questionType === 'CHOICE' && (
             <div className="mt-[40px] flex flex-col gap-[10px]">

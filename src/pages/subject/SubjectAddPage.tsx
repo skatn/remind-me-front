@@ -1,23 +1,26 @@
-import Navigation from '../components/navigation/Navigation';
-import BackButton from '../components/navigation/BackButton';
-import { useNavigate, useParams } from 'react-router-dom';
-import ColorSelector from '../components/color/ColorSelector';
-import Input from '../components/input/text/Input';
-import OutlineButton from '../components/input/button/OutlineButton';
-import Button from '../components/input/button/Button';
-import React, { useContext } from 'react';
-import useInvalid from '../hooks/valid/useInvalid';
-import { ToastContext } from '../contexts/ToastContext';
-import useUpdateSubject from '../hooks/subject/useUpdateSubject';
+import Navigation from '../../components/navigation/Navigation';
+import BackButton from '../../components/navigation/BackButton';
+import ColorSelector from '../../components/color/ColorSelector';
+import Input from '../../components/input/text/Input';
+import OutlineButton from '../../components/input/button/OutlineButton';
+import Button from '../../components/input/button/Button';
+import React, { useContext, useState } from 'react';
+import useAddSubject from '../../hooks/subject/useAddSubject';
+import { SubjectAddRequest } from '../../types/subject';
+import useInvalid from '../../hooks/valid/useInvalid';
+import { ToastContext } from '../../contexts/ToastContext';
+import { useNavigate } from 'react-router-dom';
 
-const SubjectUpdatePage = () => {
-  const { subjectId } = useParams();
-  const { params, setParams, mutate } = useUpdateSubject(Number(subjectId));
+const SubjectAddPage = () => {
+  const { mutate } = useAddSubject();
+  const [params, setParams] = useState<SubjectAddRequest>({
+    title: '',
+    color: '',
+  });
   const { invalidField, check } = useInvalid({
     title: [],
     color: [],
   });
-
   const { addToast } = useContext(ToastContext);
   const navigate = useNavigate();
 
@@ -42,7 +45,7 @@ const SubjectUpdatePage = () => {
 
   return (
     <div className="flex flex-col">
-      <Navigation title="문제집 수정" left={<BackButton />} />
+      <Navigation title="문제집 추가" left={<BackButton />} />
       <form className="mt-[26px] px-[24px]" onSubmit={handleSubmit}>
         <h1 className="text-heading-md mb-[8px]">표지 색상</h1>
         <ColorSelector
@@ -74,4 +77,4 @@ const SubjectUpdatePage = () => {
   );
 };
 
-export default SubjectUpdatePage;
+export default SubjectAddPage;
