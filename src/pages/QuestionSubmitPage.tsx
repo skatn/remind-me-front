@@ -74,7 +74,10 @@ const QuestionSubmitPage = () => {
       <div className="flex flex-col">
         <Navigation title="asdf" left={<BackButton />} />
         <div className="p-[24px]">
-          <p className="text-heading-md">{question?.question}</p>
+          <div className="text-heading-md flex gap-[6px]">
+            <span>{questionNavStatus.index + 1}.</span>
+            <p>{question?.question}</p>
+          </div>
 
           {question?.questionType === 'CHOICE' && (
             <div className="mt-[40px] flex flex-col gap-[10px]">
