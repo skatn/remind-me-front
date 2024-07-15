@@ -48,6 +48,7 @@ export interface QuestionSubmitResponse {
 export interface QuestionGetResponse {
   id: number;
   question: string;
+  questionImage: string;
   questionType: QuestionType;
   explanation: string;
   answers: Answer[];

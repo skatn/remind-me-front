@@ -13,6 +13,7 @@ import Modal from '../../components/modal/Modal';
 import OutlineButton from '../../components/input/button/OutlineButton';
 import useInvalid from '../../hooks/valid/useInvalid';
 import useQuestionNavigation from '../../hooks/question/useQuestionNavigation';
+import { concatHostUrl } from '../../utils/utils';
 
 const QuestionSubmitPage = () => {
   const navigate = useNavigate();
@@ -78,6 +79,13 @@ const QuestionSubmitPage = () => {
             <span>{questionNavStatus.index + 1}.</span>
             <p>{question?.question}</p>
           </div>
+          {question?.questionImage && (
+            <img
+              src={concatHostUrl(question?.questionImage)}
+              alt="question"
+              className="mt-[10px] aspect-video object-cover"
+            />
+          )}
 
           {question?.questionType === 'CHOICE' && (
             <div className="mt-[40px] flex flex-col gap-[10px]">
