@@ -12,12 +12,19 @@ import { QuestionSubmitRequest } from '../types/question';
 import Modal from '../components/modal/Modal';
 import OutlineButton from '../components/input/button/OutlineButton';
 import useInvalid from '../hooks/valid/useInvalid';
+import useQuestionNavigation from '../hooks/question/useQuestionNavigation';
 
 const QuestionSubmitPage = () => {
   const navigate = useNavigate();
   const params = useParams();
   const questionId = Number(params.questionId);
+  const subjectId = Number(params.subjectId);
   const { data: question } = useFetchQuestion(questionId);
+  const {
+    goToNextQuestion,
+    goToPrevQuestion,
+    status: questionNavStatus,
+  } = useQuestionNavigation(subjectId, questionId);
   const { mutate } = useSubmitQuestion();
   const [submitRequest, setSubmitRequest] = useState<QuestionSubmitRequest>({
     questionId: questionId,
@@ -119,17 +126,25 @@ const QuestionSubmitPage = () => {
             제출
           </Button>
           <div className="text-body-md mt-[30px] flex justify-between">
-            <button className="inline-flex items-center text-highlight-1">
+            <button
+              className={`inline-flex items-center text-highlight-1 ${!questionNavStatus.hasPrev && 'invisible'}`}
+              onClick={goToPrevQuestion}
+            >
               <Icon icon={faAngleLeft} size={16} />
               이전 문제
             </button>
-            <button className="inline-flex items-center text-highlight-1">
+
+            <button
+              className={`inline-flex items-center text-highlight-1 ${!questionNavStatus.hasNext && 'invisible'}`}
+              onClick={goToNextQuestion}
+            >
               다음 문제
               <Icon icon={faAngleRight} size={16} />
             </button>
           </div>
         </div>
       </div>
+
       {modalState.isOpen && (
         <Modal>
           <h1 className="text-heading-md">{modalState.title}</h1>

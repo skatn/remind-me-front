@@ -9,7 +9,7 @@ import Question from '../components/question/Question';
 const QuestionListPage = () => {
   const location = useLocation();
   const params = useParams();
-  const { content } = useFetchQuestionList({
+  const { content, ref } = useFetchQuestionList({
     size: 10,
     subjectId: Number(params.subjectId),
   });
@@ -38,6 +38,8 @@ const QuestionListPage = () => {
           </Link>
         ))}
       </div>
+
+      <div ref={ref}></div>
 
       <Link
         to={`/subjects/${Number(params.subjectId)}/questions/add`}

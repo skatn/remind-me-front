@@ -8,7 +8,7 @@ import useIntersect from '../intersect/useIntersect';
 
 const useFetchQuestionList = (request: QuestionListRequest) => {
   const query = useInfiniteQuery({
-    queryKey: questionKeys.list(request.subjectId),
+    queryKey: questionKeys.listWithSize(request.subjectId, request.size),
     queryFn: async ({ pageParam }) => {
       const response = await api.get<ScrollResponse<Question>>(
         '/api/questions',
@@ -18,8 +18,9 @@ const useFetchQuestionList = (request: QuestionListRequest) => {
       );
       return response.data;
     },
-    initialPageParam: null,
+    initialPageParam: request.cursor,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
+    gcTime: 1000 * 60 * 30, //(ms)
   });
 
   const content = useMemo(

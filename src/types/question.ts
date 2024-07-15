@@ -51,3 +51,9 @@ export interface QuestionGetResponse {
   explanation: string;
   answers: Answer[];
 }
+
+export interface QuestionNavigation {
+  index: number;
+  hasNext: boolean;
+  hasPrev: boolean;
+}
