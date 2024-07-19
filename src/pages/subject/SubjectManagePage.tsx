@@ -4,8 +4,7 @@ import Toggle from '../../components/input/toggle/Toggle';
 import Icon from '../../components/icon/Icon';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import Divider from '../../components/divider/Divider';
-import CheckBox from '../../components/input/checkbox/CheckBox';
-import Button from '../../components/input/button/Button';
+import QuestionManageListItem from '../../components/question/QuestionManageListItem';
 
 const SubjectManagePage = () => {
   return (
@@ -30,56 +29,27 @@ const SubjectManagePage = () => {
         </div>
 
         <div className="mt-[40px]">
-          <div className="flex justify-between">
-            <CheckBox id="select-all">전체 선택</CheckBox>
-            <div className="flex cursor-pointer items-center gap-[8px]">
-              <Icon icon={faTrash} size={16} className="text-support-error-1" />
-              <span className="text-support-error-1">선택 삭제</span>
-            </div>
-          </div>
-
           <div className="mt-[14px] flex flex-col gap-[8px]">
-            <div>
-              <CheckBox>
-                <div>
-                  <p>
-                    1. 문제이름 문제이름 문제이름 문제이름 문제이름 문제이름
-                    문제이름 문제이름
-                  </p>
-                  <div className="mt-[4px] flex gap-[12px]">
-                    <Button>수정</Button> <Button>삭제</Button>
-                  </div>
-                </div>
-              </CheckBox>
-            </div>
+            <QuestionManageListItem
+              index={1}
+              question="문제 문제 문제"
+              onClickEdit={() => {}}
+              onClickDelete={() => {}}
+            />
             <Divider />
-            <div>
-              <CheckBox>
-                <div>
-                  <p>
-                    1. 문제이름 문제이름 문제이름 문제이름 문제이름 문제이름
-                    문제이름 문제이름
-                  </p>
-                  <div className="mt-[4px] flex gap-[12px]">
-                    <Button>수정</Button> <Button>삭제</Button>
-                  </div>
-                </div>
-              </CheckBox>
-            </div>
-            <Divider />{' '}
-            <div>
-              <CheckBox>
-                <div>
-                  <p>
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                  </p>
-                  <div className="mt-[4px] flex gap-[12px]">
-                    <Button>수정</Button> <Button>삭제</Button>
-                  </div>
-                </div>
-              </CheckBox>
-            </div>
+            <QuestionManageListItem
+              index={2}
+              question="문제 문제 문제"
+              onClickEdit={() => {}}
+              onClickDelete={() => {}}
+            />
             <Divider />
+            <QuestionManageListItem
+              index={3}
+              question="문제 문제 문제"
+              onClickEdit={() => {}}
+              onClickDelete={() => {}}
+            />
           </div>
         </div>
       </div>
