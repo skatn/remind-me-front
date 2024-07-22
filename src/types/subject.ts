@@ -26,3 +26,11 @@ export interface Subject {
   color: string;
   questionCount: number;
 }
+
+export interface NotificationUpdateRequest {
+  enable: boolean;
+}
+
+export interface NotificationGetResponse {
+  isEnable: boolean;
+}

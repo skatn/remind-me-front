@@ -5,8 +5,20 @@ import Icon from '../../components/icon/Icon';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import Divider from '../../components/divider/Divider';
 import QuestionManageListItem from '../../components/question/QuestionManageListItem';
+import { useParams } from 'react-router-dom';
+import useUpdateNotification from '../../hooks/subject/useUpdateNotification';
 
 const SubjectManagePage = () => {
+  const { subjectId } = useParams();
+  const { params, setParams, mutate } = useUpdateNotification(
+    Number(subjectId),
+  );
+
+  const handleChangeNotification = (enable: boolean) => {
+    setParams({ enable });
+    mutate({ enable });
+  };
+
   return (
     <div className="flex flex-col">
       <Navigation title="문제집 관리" left={<BackButton />} />
@@ -18,7 +30,7 @@ const SubjectManagePage = () => {
               off시 해당 문제집에 수록된 문제들의 알림을 받지 않습니다.
             </span>
           </div>
-          <Toggle />
+          <Toggle checked={params.enable} onChange={handleChangeNotification} />
         </div>
 
         <Divider />
