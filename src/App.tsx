@@ -19,6 +19,7 @@ import QuestionAddPage from './pages/question/QuestionAddPage';
 import QuestionSubmitPage from './pages/question/QuestionSubmitPage';
 import ExplainPage from './pages/question/ExplainPage';
 import SubjectManagePage from './pages/subject/SubjectManagePage';
+import QuestionEditPage from './pages/question/QuestionEditPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -80,6 +81,10 @@ function App() {
                   <Route
                     path="/subjects/:subjectId/questions/:questionId/explain"
                     element={<ExplainPage />}
+                  />
+                  <Route
+                    path="/subjects/:subjectId/questions/:questionId/edit"
+                    element={<QuestionEditPage />}
                   />
                 </Route>
               </Routes>

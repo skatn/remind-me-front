@@ -80,7 +80,11 @@ const SubjectManagePage = () => {
                   <QuestionManageListItem
                     index={index + 1}
                     question={question.question}
-                    onClickEdit={() => {}}
+                    onClickEdit={() => {
+                      navigate(
+                        `/subjects/${subjectId}/questions/${question.id}/edit`,
+                      );
+                    }}
                     onClickDelete={() => {
                       setQuestionDeleteModalState({
                         isOpen: true,
