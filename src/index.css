@@ -8,11 +8,11 @@
     html {
         font-family: 'Noto Sans KR', sans-serif, system-ui;
         font-style: normal;
-        @apply text-neutral-dark-1;
     }
 
-    #root * {
-        white-space: pre-wrap;
+    body {
+        @apply text-neutral-dark-1 text-body-md;
+        /*white-space: pre-wrap;*/
         word-break: break-all;
     }
 

@@ -9,11 +9,10 @@ import useSubmitQuestion from '../../hooks/question/useSubmitQuestion';
 import useFetchQuestion from '../../hooks/question/useFetchQuestion';
 import { useState } from 'react';
 import { QuestionSubmitRequest } from '../../types/question';
-import Modal from '../../components/modal/Modal';
-import OutlineButton from '../../components/input/button/OutlineButton';
 import useInvalid from '../../hooks/valid/useInvalid';
 import useQuestionNavigation from '../../hooks/question/useQuestionNavigation';
 import { concatHostUrl } from '../../utils/utils';
+import SimpleModal from '../../components/modal/SimpleModal';
 
 const QuestionSubmitPage = () => {
   const navigate = useNavigate();
@@ -157,30 +156,21 @@ const QuestionSubmitPage = () => {
       </div>
 
       {modalState.isOpen && (
-        <Modal>
-          <h1 className="text-heading-md">{modalState.title}</h1>
-          <p className="text-body-sm mt-[8px] text-neutral-dark-4">
-            {modalState.message}
-          </p>
-          <div className="mt-[20px] flex w-full gap-[8px]">
-            <OutlineButton
-              className="flex-1"
-              onClick={() => {
-                navigate(
-                  `/subjects/${params.subjectId}/questions/${params.questionId}/explain`,
-                  {
-                    state: { explanation: question?.explanation },
-                  },
-                );
-              }}
-            >
-              풀이 보기
-            </OutlineButton>
-            <Button className="flex-1" onClick={closeModal}>
-              확인
-            </Button>
-          </div>
-        </Modal>
+        <SimpleModal
+          title={modalState.title}
+          desc={modalState.message}
+          leftBtnTxt="풀이 보기"
+          rightBtnTxt="확인"
+          onClickLeftBtn={() => {
+            navigate(
+              `/subjects/${params.subjectId}/questions/${params.questionId}/explain`,
+              {
+                state: { explanation: question?.explanation },
+              },
+            );
+          }}
+          onClickRightBtn={closeModal}
+        />
       )}
     </>
   );

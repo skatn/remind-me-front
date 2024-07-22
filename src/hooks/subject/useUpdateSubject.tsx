@@ -3,6 +3,7 @@ import { SubjectUpdateRequest } from '../../types/subject';
 import { api } from '../../configs/AxiosConfig';
 import useFetchSubject from './useFetchSubject';
 import { useEffect, useState } from 'react';
+import subjectKeys from './subjectKeys';
 
 const useUpdateSubject = (subjectId: number) => {
   const queryClient = useQueryClient();
@@ -23,8 +24,7 @@ const useUpdateSubject = (subjectId: number) => {
       return api.patch(`/api/subjects/${subjectId}`, request);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['subject list'] });
-      queryClient.invalidateQueries({ queryKey: ['subject', subjectId] });
+      queryClient.invalidateQueries({ queryKey: subjectKeys.all });
     },
   });
 
