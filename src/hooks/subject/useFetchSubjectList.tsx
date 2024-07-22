@@ -6,10 +6,11 @@ import {
 import { api } from '../../configs/AxiosConfig';
 import { useMemo } from 'react';
 import useIntersect from '../intersect/useIntersect';
+import subjectKeys from './subjectKeys';
 
 const useFetchSubjectList = (request: SubjectListGetRequest) => {
   const query = useInfiniteQuery({
-    queryKey: ['subject list', request.size, request.title],
+    queryKey: [...subjectKeys.list(), request.size, request.title],
     queryFn: async ({ pageParam }) => {
       const response = await api.get<SubjectListGetResponse>('/api/subjects', {
         params: { ...request, cursor: pageParam },
