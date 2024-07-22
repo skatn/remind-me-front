@@ -2,10 +2,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import subjectKeys from './subjectKeys';
 import { api } from '../../configs/AxiosConfig';
 
-const useDeleteSubject = (subjectId: number) => {
+const useDeleteSubject = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => {
+    mutationFn: (subjectId: number) => {
       return api.delete(`/api/subjects/${subjectId}`);
     },
     onSuccess: () => {

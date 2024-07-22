@@ -8,8 +8,10 @@ import QuestionManageListItem from '../../components/question/QuestionManageList
 import { useNavigate, useParams } from 'react-router-dom';
 import useUpdateNotification from '../../hooks/subject/useUpdateNotification';
 import useDeleteSubject from '../../hooks/subject/useDeleteSubject';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import SimpleModal from '../../components/modal/SimpleModal';
+import useDeleteQuestion from '../../hooks/question/useDeleteQuestion';
+import useFetchQuestionList from '../../hooks/question/useFetchQuestionList';
 
 const SubjectManagePage = () => {
   const { subjectId } = useParams();
@@ -19,21 +21,25 @@ const SubjectManagePage = () => {
     setParams,
     mutate: updateMutate,
   } = useUpdateNotification(Number(subjectId));
-  const { mutate: deleteMutate } = useDeleteSubject(Number(subjectId));
+  const { mutate: deleteMutate } = useDeleteSubject();
+  const { mutate: questionDeleteMutate } = useDeleteQuestion();
+  const { ref, content } = useFetchQuestionList({
+    subjectId: Number(subjectId),
+    size: 10,
+  });
+
   const [isSubjectDeleteModalOpen, setIsSubjectDeleteModalOpen] =
     useState<boolean>(false);
+  const [questionDeleteModalState, setQuestionDeleteModalState] = useState<any>(
+    {
+      isOpen: false,
+      questionId: 0,
+    },
+  );
 
   const handleChangeNotification = (enable: boolean) => {
     setParams({ enable });
     updateMutate({ enable });
-  };
-
-  const handleDelete = () => {
-    deleteMutate(undefined, {
-      onSuccess: () => {
-        navigate('/subjects', { replace: true });
-      },
-    });
   };
 
   return (
@@ -69,26 +75,23 @@ const SubjectManagePage = () => {
 
           <div className="mt-[40px]">
             <div className="mt-[14px] flex flex-col gap-[8px]">
-              <QuestionManageListItem
-                index={1}
-                question="문제 문제 문제"
-                onClickEdit={() => {}}
-                onClickDelete={() => {}}
-              />
-              <Divider />
-              <QuestionManageListItem
-                index={2}
-                question="문제 문제 문제"
-                onClickEdit={() => {}}
-                onClickDelete={() => {}}
-              />
-              <Divider />
-              <QuestionManageListItem
-                index={3}
-                question="문제 문제 문제"
-                onClickEdit={() => {}}
-                onClickDelete={() => {}}
-              />
+              {content?.map((question, index) => (
+                <React.Fragment key={question.id}>
+                  <QuestionManageListItem
+                    index={index + 1}
+                    question={question.question}
+                    onClickEdit={() => {}}
+                    onClickDelete={() => {
+                      setQuestionDeleteModalState({
+                        isOpen: true,
+                        questionId: question.id,
+                      });
+                    }}
+                  />
+                  {index < content?.length - 1 && <Divider />}
+                </React.Fragment>
+              ))}
+              <div ref={ref}></div>
             </div>
           </div>
         </div>
@@ -102,8 +105,34 @@ const SubjectManagePage = () => {
           rightBtnTxt="삭제"
           onClickLeftBtn={() => setIsSubjectDeleteModalOpen(false)}
           onClickRightBtn={() => {
-            handleDelete();
+            deleteMutate(Number(subjectId), {
+              onSuccess: () => {
+                navigate('/subjects', { replace: true });
+              },
+            });
             setIsSubjectDeleteModalOpen(false);
+          }}
+        />
+      )}
+
+      {questionDeleteModalState.isOpen && (
+        <SimpleModal
+          title="문제 삭제"
+          desc="정말 삭제 하시겠습니까?"
+          leftBtnTxt="취소"
+          rightBtnTxt="삭제"
+          onClickLeftBtn={() =>
+            setQuestionDeleteModalState({
+              isOpen: false,
+              questionId: 0,
+            })
+          }
+          onClickRightBtn={() => {
+            questionDeleteMutate(questionDeleteModalState.questionId);
+            setQuestionDeleteModalState({
+              isOpen: false,
+              questionId: 0,
+            });
           }}
         />
       )}

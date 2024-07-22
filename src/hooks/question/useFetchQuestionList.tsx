@@ -8,7 +8,7 @@ import useIntersect from '../intersect/useIntersect';
 
 const useFetchQuestionList = (request: QuestionListRequest) => {
   const query = useInfiniteQuery({
-    queryKey: questionKeys.listWithSize(request.subjectId, request.size),
+    queryKey: [...questionKeys.list(request.subjectId), request.size],
     queryFn: async ({ pageParam }) => {
       const response = await api.get<ScrollResponse<Question>>(
         '/api/questions',
@@ -23,10 +23,10 @@ const useFetchQuestionList = (request: QuestionListRequest) => {
     gcTime: 1000 * 60 * 30, //(ms)
   });
 
-  const content = useMemo(
-    () => (query.data ? query.data.pages.flatMap((data) => data.content) : []),
-    [query.data],
-  );
+  const content = useMemo(() => {
+    console.log('useFetchQuestionList');
+    return query.data ? query.data.pages.flatMap((data) => data.content) : [];
+  }, [query.data]);
 
   const ref = useIntersect((entry, observer) => {
     observer.unobserve(entry.target);
