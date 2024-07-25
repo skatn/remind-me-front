@@ -17,16 +17,13 @@ const MyPage = () => {
   const [year, setYear] = useState<number>(new Date().getFullYear());
   const { data: histories } = useFetchYearsHistories(year);
 
-  const years = Array.from({ length: 12 }, () => 0);
-  const months = Array.from({ length: 30 }, () => 0);
-
   return (
     <div className="flex flex-col">
       <Navigation
         title="마이페이지"
         left={<BackButton />}
         right={
-          <Link to={''}>
+          <Link to="/mypage/edit">
             <Icon icon={faPen} size={20} />
           </Link>
         }

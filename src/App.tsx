@@ -21,6 +21,7 @@ import ExplainPage from './pages/question/ExplainPage';
 import SubjectManagePage from './pages/subject/SubjectManagePage';
 import QuestionEditPage from './pages/question/QuestionEditPage';
 import MyPage from './pages/mypage/MyPage';
+import ProfileEditPage from './pages/mypage/ProfileEditPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -58,6 +59,7 @@ function App() {
                 >
                   <Route path="/" element={<HomePage />} />
                   <Route path="/mypage" element={<MyPage />} />
+                  <Route path="/mypage/edit" element={<ProfileEditPage />} />
                   <Route path="/subjects" element={<SubjectListPage />} />
                   <Route path="/subjects/add" element={<SubjectAddPage />} />
                   <Route

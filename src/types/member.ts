@@ -3,3 +3,7 @@ export interface MemberProfile {
   username: string;
   name: string;
 }
+
+export interface MemberProfileUpdateRequest {
+  name: string;
+}
