@@ -24,7 +24,6 @@ const useFetchQuestionList = (request: QuestionListRequest) => {
   });
 
   const content = useMemo(() => {
-    console.log('useFetchQuestionList');
     return query.data ? query.data.pages.flatMap((data) => data.content) : [];
   }, [query.data]);
 

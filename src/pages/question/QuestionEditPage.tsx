@@ -40,7 +40,14 @@ const QuestionEditPage = () => {
     const questionType = e.currentTarget.value as QuestionType;
     setParam((prev) => ({
       ...prev,
-      answers: [{ answer: '', isAnswer: true }],
+      answers:
+        questionType === 'CHOICE'
+          ? [
+              { answer: '', isAnswer: false },
+              { answer: '', isAnswer: false },
+              { answer: '', isAnswer: false },
+            ]
+          : [{ answer: '', isAnswer: true }],
       questionType,
     }));
   };
