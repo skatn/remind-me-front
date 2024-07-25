@@ -59,3 +59,11 @@ export interface QuestionNavigation {
   hasNext: boolean;
   hasPrev: boolean;
 }
+
+export interface QuestionUpdateRequest {
+  question: string;
+  questionImage: string;
+  questionType: QuestionType;
+  answers: Answer[];
+  explanation: string;
+}

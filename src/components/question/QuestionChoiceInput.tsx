@@ -8,15 +8,21 @@ import { ToastContext } from '../../contexts/ToastContext';
 
 interface QuestionChoiceInputProps {
   onChange?: (answers: Answer[]) => void;
+  initialValue?: Answer[];
 }
 
-const QuestionChoiceInput = ({ onChange }: QuestionChoiceInputProps) => {
+const QuestionChoiceInput = ({
+  onChange,
+  initialValue,
+}: QuestionChoiceInputProps) => {
   const { addToast } = useContext(ToastContext);
-  const [answers, setAnswers] = useState<Answer[]>([
-    { answer: '', isAnswer: false },
-    { answer: '', isAnswer: false },
-    { answer: '', isAnswer: false },
-  ]);
+  const [answers, setAnswers] = useState<Answer[]>(
+    initialValue || [
+      { answer: '', isAnswer: false },
+      { answer: '', isAnswer: false },
+      { answer: '', isAnswer: false },
+    ],
+  );
 
   useEffect(() => {
     if (onChange) {
