@@ -8,8 +8,11 @@ import {
   faPen,
 } from '@fortawesome/free-solid-svg-icons';
 import { convertHistoryToColor } from '../../utils/utils';
+import useFetchProfile from '../../hooks/member/useFetchProfile';
 
 const MyPage = () => {
+  const { data } = useFetchProfile();
+
   const years = Array.from({ length: 12 }, () => 0);
   const months = Array.from({ length: 30 }, () => 0);
 
@@ -28,11 +31,11 @@ const MyPage = () => {
       <div className="mx-[24px] mt-[24px]">
         <div className="flex flex-col gap-[7px]">
           <span className="text-heading-sm">아이디</span>
-          user1234
+          {data?.username}
         </div>
         <div className="mt-[20px] flex flex-col gap-[7px]">
           <span className="text-heading-sm">이름</span>
-          user1234
+          {data?.name}
         </div>
       </div>
 
