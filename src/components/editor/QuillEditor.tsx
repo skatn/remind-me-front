@@ -5,10 +5,11 @@ import { api } from '../../configs/AxiosConfig';
 
 interface QuillEditorProps {
   onChange?: (value: string) => void;
+  initialValue?: string;
 }
 
-const QuillEditor = ({ onChange }: QuillEditorProps) => {
-  const [value, setValue] = useState('');
+const QuillEditor = ({ onChange, initialValue }: QuillEditorProps) => {
+  const [value, setValue] = useState<string>('');
   const quillRef = useRef<any>(null);
 
   const imageHandler = () => {
@@ -53,7 +54,7 @@ const QuillEditor = ({ onChange }: QuillEditorProps) => {
       <ReactQuill
         ref={quillRef}
         theme="snow"
-        value={value}
+        value={value || initialValue}
         onChange={(value) => {
           setValue(value);
           if (onChange) {
