@@ -11,7 +11,7 @@ const useUpdateProfile = () => {
       return api.patch('/api/members/me', request);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: memberKeys.profile });
+      queryClient.invalidateQueries({ queryKey: memberKeys.profile() });
     },
   });
 };

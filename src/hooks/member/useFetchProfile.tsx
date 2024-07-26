@@ -5,7 +5,7 @@ import memberKeys from './memberKeys';
 
 const useFetchProfile = () => {
   return useQuery({
-    queryKey: memberKeys.profile,
+    queryKey: memberKeys.profile(),
     queryFn: async () => {
       const response = await api.get<MemberProfile>('/api/members/me');
       return response.data;
