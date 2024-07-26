@@ -2,9 +2,11 @@ import Navigation from '../../components/navigation/Navigation';
 import BackButton from '../../components/navigation/BackButton';
 import Divider from '../../components/divider/Divider';
 import useLogout from '../../hooks/auth/useLogout';
+import useDeleteAccount from '../../hooks/auth/useDeleteAccount';
 
 const SettingPage = () => {
   const { logout } = useLogout();
+  const { deleteAccount } = useDeleteAccount();
 
   return (
     <div className="flex flex-col">
@@ -17,7 +19,10 @@ const SettingPage = () => {
           로그아웃
         </span>
         <Divider />
-        <span className="cursor-pointer rounded-md p-[10px] hover:bg-neutral-light-4">
+        <span
+          className="cursor-pointer rounded-md p-[10px] hover:bg-neutral-light-4"
+          onClick={deleteAccount}
+        >
           회원 탈퇴
         </span>
       </div>
