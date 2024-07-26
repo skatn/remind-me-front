@@ -12,8 +12,11 @@
 
     body {
         @apply text-neutral-dark-1 text-body-md;
-        /*white-space: pre-wrap;*/
         word-break: break-all;
+    }
+
+    #root {
+        white-space: pre-wrap;
     }
 
     #toast {

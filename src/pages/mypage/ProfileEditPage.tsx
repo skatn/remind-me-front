@@ -7,9 +7,13 @@ import { useEffect, useState } from 'react';
 import OutlineButton from '../../components/input/button/OutlineButton';
 import Button from '../../components/input/button/Button';
 import { useNavigate } from 'react-router-dom';
+import useInvalid from '../../hooks/valid/useInvalid';
 
 const ProfileEditPage = () => {
   const [name, setName] = useState<string>('');
+  const { invalidField, check } = useInvalid({
+    name: [],
+  });
   const { data: profile, isSuccess } = useFetchProfile();
   const { mutate } = useUpdateProfile();
   const navigate = useNavigate();
@@ -23,6 +27,9 @@ const ProfileEditPage = () => {
       { name },
       {
         onSuccess: () => navigate(-1),
+        onError: (error) => {
+          check(error);
+        },
       },
     );
   };
@@ -43,6 +50,8 @@ const ProfileEditPage = () => {
           className="w-full"
           value={name}
           onChange={(value) => setName(value)}
+          invalid={invalidField.name.length > 0}
+          supportText={invalidField.name.join('\n')}
         />
 
         <div className="flex gap-[12px]">
