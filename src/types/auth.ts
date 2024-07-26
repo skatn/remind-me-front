@@ -15,6 +15,10 @@ export interface LoginResponse {
   refreshToken: string;
 }
 
+export interface LogoutRequest {
+  refreshToken: string;
+}
+
 export interface Authentication {
   isAuthenticated: boolean;
   id: number;
