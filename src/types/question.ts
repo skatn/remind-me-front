@@ -5,6 +5,10 @@ export interface QuestionHistory {
   count: number;
 }
 
+export interface QuestionYearHistory {
+  [key: string]: QuestionHistory[];
+}
+
 export interface QuestionListRequest extends ScrollRequest {
   subjectId: number;
 }
