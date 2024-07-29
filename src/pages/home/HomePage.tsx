@@ -5,10 +5,32 @@ import HorizontalList from '../../components/list/HorizontalList';
 import Subject from '../../components/subject/Subject';
 import useFetchSubjectList from '../../hooks/subject/useFetchSubjectList';
 import { useNavigate } from 'react-router-dom';
+import { getFcmToken } from '../../firebase/firebase';
+import { useContext, useEffect } from 'react';
+import { api } from '../../configs/AxiosConfig';
+import { ToastContext } from '../../contexts/ToastContext';
 
 const HomePage = () => {
   const navigate = useNavigate();
   const { content: subjects } = useFetchSubjectList({ size: 10 });
+  const { addToast } = useContext(ToastContext);
+
+  useEffect(() => {
+    getFcmToken()
+      .then((token) => {
+        api.post('/api/fcm/tokens', { token });
+      })
+      .catch((error) => {
+        if (error.message !== 'notification permission denied') {
+          addToast({
+            type: 'error',
+            title: 'Push 알림 설정 에러',
+            description:
+              'Push 알림 관련 설정 중 예기치 못한 에러가 발생했습니다.',
+          });
+        }
+      });
+  }, [addToast]);
 
   return (
     <div className="flex flex-col">
