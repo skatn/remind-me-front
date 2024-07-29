@@ -11,6 +11,8 @@ import { AxiosError } from 'axios';
 import { ErrorResponse } from '../../types/axios';
 import { AuthenticationContext } from '../../contexts/AuthenticationContext';
 
+import requestNotificationPermission from '../../utils/requestNotificationPermission';
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,6 +28,19 @@ const LoginPage = () => {
     username: [],
     password: [],
   });
+
+  useEffect(() => {
+    requestNotificationPermission().then((isGranted) => {
+      if (!isGranted) {
+        addToast({
+          type: 'info',
+          title: 'Push 알림을 받지 않습니다.',
+          description:
+            '알림 표시 권한이 거부 되어서 Push 알림을 받지 못합니다.',
+        });
+      }
+    });
+  }, [addToast]);
 
   useEffect(() => {
     if (authentication.isAuthenticated) {
