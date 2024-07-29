@@ -22,9 +22,8 @@ export const getFcmToken = async () => {
     const token = await getToken(messaging, {
       vapidKey: process.env['REACT_APP_FIREBASE_VAPID_KEY'],
     });
-    if (token) console.log('token: ', token);
+    if (token) console.log('fcm token: ', token);
     else {
-      console.log('Can not get Token');
       throw new Error('get fcm token failed');
     }
 
