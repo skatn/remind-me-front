@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { api } from '../../configs/AxiosConfig';
 import { MemberProfile } from '../../types/member';
@@ -6,9 +6,10 @@ import { ToastContext } from '../../contexts/ToastContext';
 import { AuthenticationContext } from '../../contexts/AuthenticationContext';
 import { ErrorResponse } from '../../types/axios';
 import { AxiosError } from 'axios';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 const LoginCallbackPage = () => {
-  const navigate = useNavigate();
+  const { navigate } = useRemindMeNavigate();
   const { addToast } = useContext(ToastContext);
   const { setAuthentication } = useContext(AuthenticationContext);
   const location = useLocation();

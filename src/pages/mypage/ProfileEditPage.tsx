@@ -6,8 +6,8 @@ import useUpdateProfile from '../../hooks/member/useUpdateProfile';
 import { useEffect, useState } from 'react';
 import OutlineButton from '../../components/input/button/OutlineButton';
 import Button from '../../components/input/button/Button';
-import { useNavigate } from 'react-router-dom';
 import useInvalid from '../../hooks/valid/useInvalid';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 const ProfileEditPage = () => {
   const [name, setName] = useState<string>('');
@@ -16,7 +16,7 @@ const ProfileEditPage = () => {
   });
   const { data: profile, isSuccess } = useFetchProfile();
   const { mutate } = useUpdateProfile();
-  const navigate = useNavigate();
+  const { back } = useRemindMeNavigate();
 
   useEffect(() => {
     if (isSuccess) setName(profile.name);
@@ -26,7 +26,7 @@ const ProfileEditPage = () => {
     mutate(
       { name },
       {
-        onSuccess: () => navigate(-1),
+        onSuccess: () => back(),
         onError: (error) => {
           check(error);
         },
@@ -55,7 +55,7 @@ const ProfileEditPage = () => {
         />
 
         <div className="flex gap-[12px]">
-          <OutlineButton className="flex-1" onClick={() => navigate(-1)}>
+          <OutlineButton className="flex-1" onClick={back}>
             취소
           </OutlineButton>
           <Button className="flex-1" onClick={handleSave}>

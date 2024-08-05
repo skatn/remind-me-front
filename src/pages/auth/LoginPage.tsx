@@ -1,7 +1,7 @@
 import Input from '../../components/input/text/Input';
 import Button from '../../components/input/button/Button';
 import Divider from '../../components/divider/Divider';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import React, { useContext, useEffect, useState } from 'react';
 import { LoginRequest } from '../../types/auth';
 import useLogin from '../../hooks/auth/useLogin';
@@ -11,8 +11,11 @@ import { AxiosError } from 'axios';
 import { ErrorResponse } from '../../types/axios';
 import { AuthenticationContext } from '../../contexts/AuthenticationContext';
 
+import requestNotificationPermission from '../../utils/requestNotificationPermission';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
+
 const LoginPage = () => {
-  const navigate = useNavigate();
+  const { navigate } = useRemindMeNavigate();
   const location = useLocation();
   const { addToast } = useContext(ToastContext);
   const { mutate } = useLogin();
@@ -26,6 +29,19 @@ const LoginPage = () => {
     username: [],
     password: [],
   });
+
+  useEffect(() => {
+    requestNotificationPermission().then((isGranted) => {
+      if (!isGranted) {
+        addToast({
+          type: 'info',
+          title: 'Push 알림을 받지 않습니다.',
+          description:
+            '알림 표시 권한이 거부 되어서 Push 알림을 받지 못합니다.',
+        });
+      }
+    });
+  }, [addToast]);
 
   useEffect(() => {
     if (authentication.isAuthenticated) {

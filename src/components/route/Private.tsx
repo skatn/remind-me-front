@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { AuthenticationContext } from '../../contexts/AuthenticationContext';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 interface PrivateRouteProps {
   children: React.ReactNode;
 }
 
 const Private = ({ children }: PrivateRouteProps) => {
-  const navigate = useNavigate();
+  const { navigate } = useRemindMeNavigate();
   const { pathname } = useLocation();
   const { authentication } = useContext(AuthenticationContext);
 

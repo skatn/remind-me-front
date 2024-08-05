@@ -1,12 +1,12 @@
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import Icon from '../icon/Icon';
-import { useNavigate } from 'react-router-dom';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 const BackButton = () => {
-  const navigate = useNavigate();
+  const { back } = useRemindMeNavigate();
 
   return (
-    <button type="button" onClick={() => navigate(-1)}>
+    <button type="button" onClick={back}>
       <Icon icon={faAngleLeft} size={22} />
     </button>
   );

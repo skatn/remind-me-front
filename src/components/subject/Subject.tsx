@@ -1,7 +1,7 @@
 import { Subject as SubjectType } from '../../types/subject';
-import { useNavigate } from 'react-router-dom';
 import Icon from '../icon/Icon';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 interface SubjectProps {
   subject: SubjectType;
@@ -10,7 +10,7 @@ interface SubjectProps {
 }
 
 const Subject = ({ subject, className, enableEdit }: SubjectProps) => {
-  const navigate = useNavigate();
+  const { navigate } = useRemindMeNavigate();
 
   return (
     <div

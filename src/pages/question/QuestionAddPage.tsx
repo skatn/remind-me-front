@@ -1,5 +1,5 @@
 import Navigation from '../../components/navigation/Navigation';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import BackButton from '../../components/navigation/BackButton';
 import useAddQuestion from '../../hooks/question/useAddQuestion';
 import { useCallback, useContext, useState } from 'react';
@@ -15,11 +15,12 @@ import useInvalid from '../../hooks/valid/useInvalid';
 import { ToastContext } from '../../contexts/ToastContext';
 import imageUploadApi from '../../api/imageUploadApi';
 import { concatHostUrl } from '../../utils/utils';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 const QuestionAddPage = () => {
   const location = useLocation();
   const params = useParams();
-  const navigate = useNavigate();
+  const { back } = useRemindMeNavigate();
   const { mutate } = useAddQuestion();
   const { invalidField, check } = useInvalid({
     question: [],
@@ -74,7 +75,7 @@ const QuestionAddPage = () => {
   const handleSubmit = () => {
     mutate(param, {
       onSuccess: () => {
-        navigate(-1);
+        back();
       },
       onError: (error) => {
         const errors = check(error);
@@ -210,7 +211,9 @@ const QuestionAddPage = () => {
         )}
 
         <div className="mt-[40px] flex justify-end gap-[10px]">
-          <OutlineButton className="text-neutral-dark-5">취소</OutlineButton>
+          <OutlineButton className="text-neutral-dark-5" onClick={back}>
+            취소
+          </OutlineButton>
           <OutlineButton>임시 저장</OutlineButton>
           <Button onClick={handleSubmit}>저장</Button>
         </div>

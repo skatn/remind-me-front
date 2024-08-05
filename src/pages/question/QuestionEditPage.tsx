@@ -1,5 +1,5 @@
 import Navigation from '../../components/navigation/Navigation';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import BackButton from '../../components/navigation/BackButton';
 import { useCallback, useContext } from 'react';
 import { Answer, QuestionType } from '../../types/question';
@@ -14,10 +14,11 @@ import { ToastContext } from '../../contexts/ToastContext';
 import imageUploadApi from '../../api/imageUploadApi';
 import { concatHostUrl } from '../../utils/utils';
 import useUpdateQuestion from '../../hooks/question/useUpdateQuestion';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 const QuestionEditPage = () => {
   const params = useParams();
-  const navigate = useNavigate();
+  const { back } = useRemindMeNavigate();
   const { param, setParam, invalidField, check, mutate } = useUpdateQuestion(
     Number(params.questionId),
   );
@@ -68,7 +69,7 @@ const QuestionEditPage = () => {
   const handleSubmit = () => {
     mutate(param, {
       onSuccess: () => {
-        navigate(-1);
+        back();
       },
       onError: (error) => {
         const errors = check(error);
@@ -214,7 +215,9 @@ const QuestionEditPage = () => {
         )}
 
         <div className="mt-[40px] flex justify-end gap-[10px]">
-          <OutlineButton className="text-neutral-dark-5">취소</OutlineButton>
+          <OutlineButton className="text-neutral-dark-5" onClick={back}>
+            취소
+          </OutlineButton>
           <OutlineButton>임시 저장</OutlineButton>
           <Button onClick={handleSubmit}>저장</Button>
         </div>

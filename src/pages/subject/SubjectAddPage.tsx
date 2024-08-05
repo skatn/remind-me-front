@@ -9,7 +9,7 @@ import useAddSubject from '../../hooks/subject/useAddSubject';
 import { SubjectAddRequest } from '../../types/subject';
 import useInvalid from '../../hooks/valid/useInvalid';
 import { ToastContext } from '../../contexts/ToastContext';
-import { useNavigate } from 'react-router-dom';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 const SubjectAddPage = () => {
   const { mutate } = useAddSubject();
@@ -22,13 +22,13 @@ const SubjectAddPage = () => {
     color: [],
   });
   const { addToast } = useContext(ToastContext);
-  const navigate = useNavigate();
+  const { back } = useRemindMeNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     mutate(params, {
       onSuccess: () => {
-        navigate(-1);
+        back();
       },
       onError: (error) => {
         const errors = check(error);
@@ -66,7 +66,7 @@ const SubjectAddPage = () => {
           <OutlineButton
             type="button"
             className="border-neutral-dark-5 text-neutral-dark-5"
-            onClick={() => navigate(-1)}
+            onClick={() => back}
           >
             취소
           </OutlineButton>

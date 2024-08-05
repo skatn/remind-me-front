@@ -1,6 +1,6 @@
 import Navigation from '../../components/navigation/Navigation';
 import BackButton from '../../components/navigation/BackButton';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ColorSelector from '../../components/color/ColorSelector';
 import Input from '../../components/input/text/Input';
 import OutlineButton from '../../components/input/button/OutlineButton';
@@ -9,6 +9,7 @@ import React, { useContext } from 'react';
 import useInvalid from '../../hooks/valid/useInvalid';
 import { ToastContext } from '../../contexts/ToastContext';
 import useUpdateSubject from '../../hooks/subject/useUpdateSubject';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 const SubjectUpdatePage = () => {
   const { subjectId } = useParams();
@@ -19,13 +20,13 @@ const SubjectUpdatePage = () => {
   });
 
   const { addToast } = useContext(ToastContext);
-  const navigate = useNavigate();
+  const { back } = useRemindMeNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     mutate(params, {
       onSuccess: () => {
-        navigate(-1);
+        back();
       },
       onError: (error) => {
         const errors = check(error);
@@ -63,7 +64,7 @@ const SubjectUpdatePage = () => {
           <OutlineButton
             type="button"
             className="border-neutral-dark-5 text-neutral-dark-5"
-            onClick={() => navigate(-1)}
+            onClick={() => back}
           >
             취소
           </OutlineButton>

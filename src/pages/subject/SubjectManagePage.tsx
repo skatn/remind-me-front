@@ -5,17 +5,18 @@ import Icon from '../../components/icon/Icon';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import Divider from '../../components/divider/Divider';
 import QuestionManageListItem from '../../components/question/QuestionManageListItem';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useUpdateNotification from '../../hooks/subject/useUpdateNotification';
 import useDeleteSubject from '../../hooks/subject/useDeleteSubject';
 import React, { useState } from 'react';
 import SimpleModal from '../../components/modal/SimpleModal';
 import useDeleteQuestion from '../../hooks/question/useDeleteQuestion';
 import useFetchQuestionList from '../../hooks/question/useFetchQuestionList';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 const SubjectManagePage = () => {
   const { subjectId } = useParams();
-  const navigate = useNavigate();
+  const { navigate } = useRemindMeNavigate();
   const {
     params,
     setParams,
