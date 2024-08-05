@@ -6,7 +6,6 @@ const useRemindMeNavigate = () => {
   const nav = useNavigate();
 
   const back = () => {
-    console.log(window.history.state);
     if (window.history.state.idx === 0) {
       nav('/');
     } else {
