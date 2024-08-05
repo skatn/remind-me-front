@@ -20,7 +20,19 @@ messaging.onBackgroundMessage((payload) => {
   const notificationTitle = payload.data.title;
   const notificationOptions = {
     body: payload.data.body,
+    data: payload.data,
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
+});
+
+self.addEventListener('notificationclick', (event) => {
+  const data = event.notification.data;
+
+  event.notification.close();
+  event.waitUntil(
+    clients.openWindow(
+      `/subjects/${data.subjectId}/questions/${data.questionId}`,
+    ),
+  );
 });
