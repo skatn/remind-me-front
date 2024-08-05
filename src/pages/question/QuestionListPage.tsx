@@ -5,6 +5,7 @@ import Icon from '../../components/icon/Icon';
 import { faGear, faPlus } from '@fortawesome/free-solid-svg-icons';
 import useFetchQuestionList from '../../hooks/question/useFetchQuestionList';
 import Question from '../../components/question/Question';
+import { faFileLines } from '@fortawesome/free-regular-svg-icons';
 
 const QuestionListPage = () => {
   const location = useLocation();
@@ -26,7 +27,12 @@ const QuestionListPage = () => {
         }
       />
 
-      {content.length === 0 && <h1>문제가 없어요</h1>}
+      {content.length === 0 && (
+        <div className="flex flex-col items-center gap-4 py-[40px] text-neutral-dark-5">
+          <Icon icon={faFileLines} size={40} className="text-neutral-dark-5" />
+          <span className="text-heading-lg">등록된 문제가 없어요</span>
+        </div>
+      )}
 
       <div className="flex flex-col gap-[10px] p-[24px]">
         {content.map((question, index) => (
