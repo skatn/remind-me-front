@@ -1,10 +1,10 @@
 import useFetchQuestionList from './useFetchQuestionList';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { QuestionNavigation } from '../../types/question';
+import useRemindMeNavigate from '../navigation/useRemindMeNavigate';
 
 const useQuestionNavigation = (subjectId: number, currQuestionId: number) => {
-  const navigate = useNavigate();
+  const { navigate } = useRemindMeNavigate();
   const { content, hasNextPage, fetchNextPage, isLoading } =
     useFetchQuestionList({
       subjectId: subjectId,

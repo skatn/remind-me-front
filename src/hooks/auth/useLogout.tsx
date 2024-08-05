@@ -4,13 +4,13 @@ import { LogoutRequest } from '../../types/auth';
 import { useContext } from 'react';
 import { AuthenticationContext } from '../../contexts/AuthenticationContext';
 import memberKeys from '../member/memberKeys';
-import { useNavigate } from 'react-router-dom';
+import useRemindMeNavigate from '../navigation/useRemindMeNavigate';
 
 const useLogout = () => {
   const { clearAuthentication, authentication } = useContext(
     AuthenticationContext,
   );
-  const navigate = useNavigate();
+  const { navigate } = useRemindMeNavigate();
   const queryClient = useQueryClient();
 
   const mutation = useMutation({

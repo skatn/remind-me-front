@@ -4,9 +4,9 @@ import Button from '../../components/input/button/Button';
 import OutlineButton from '../../components/input/button/OutlineButton';
 import { SignupRequest } from '../../types/auth';
 import useSignup from '../../hooks/auth/useSignup';
-import { useNavigate } from 'react-router-dom';
 import useInvalid from '../../hooks/valid/useInvalid';
 import { ToastContext } from '../../contexts/ToastContext';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 const SignupPage = () => {
   const [signupRequest, setSignupRequest] = useState<SignupRequest>({
@@ -24,7 +24,7 @@ const SignupPage = () => {
   });
 
   const { mutate } = useSignup();
-  const navigate = useNavigate();
+  const { back, navigate } = useRemindMeNavigate();
   const { addToast } = useContext(ToastContext);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -96,7 +96,7 @@ const SignupPage = () => {
             <OutlineButton
               type="button"
               className="flex-1"
-              onClick={() => navigate(-1)}
+              onClick={() => back}
             >
               취소
             </OutlineButton>

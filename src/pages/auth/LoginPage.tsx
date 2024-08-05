@@ -1,7 +1,7 @@
 import Input from '../../components/input/text/Input';
 import Button from '../../components/input/button/Button';
 import Divider from '../../components/divider/Divider';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import React, { useContext, useEffect, useState } from 'react';
 import { LoginRequest } from '../../types/auth';
 import useLogin from '../../hooks/auth/useLogin';
@@ -12,9 +12,10 @@ import { ErrorResponse } from '../../types/axios';
 import { AuthenticationContext } from '../../contexts/AuthenticationContext';
 
 import requestNotificationPermission from '../../utils/requestNotificationPermission';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 const LoginPage = () => {
-  const navigate = useNavigate();
+  const { navigate } = useRemindMeNavigate();
   const location = useLocation();
   const { addToast } = useContext(ToastContext);
   const { mutate } = useLogin();

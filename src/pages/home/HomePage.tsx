@@ -4,14 +4,14 @@ import Banner from '../../components/banner/Banner';
 import HorizontalList from '../../components/list/HorizontalList';
 import Subject from '../../components/subject/Subject';
 import useFetchSubjectList from '../../hooks/subject/useFetchSubjectList';
-import { useNavigate } from 'react-router-dom';
 import { getFcmToken } from '../../firebase/firebase';
 import { useContext, useEffect } from 'react';
 import { api } from '../../configs/AxiosConfig';
 import { ToastContext } from '../../contexts/ToastContext';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 const HomePage = () => {
-  const navigate = useNavigate();
+  const { navigate } = useRemindMeNavigate();
   const { content: subjects } = useFetchSubjectList({ size: 10 });
   const { addToast } = useContext(ToastContext);
 

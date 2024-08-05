@@ -1,13 +1,13 @@
 import { useContext } from 'react';
 import { AuthenticationContext } from '../../contexts/AuthenticationContext';
-import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '../../configs/AxiosConfig';
 import memberKeys from '../member/memberKeys';
+import useRemindMeNavigate from '../navigation/useRemindMeNavigate';
 
 const useDeleteAccount = () => {
   const { clearAuthentication } = useContext(AuthenticationContext);
-  const navigate = useNavigate();
+  const { navigate } = useRemindMeNavigate();
   const queryClient = useQueryClient();
 
   const mutation = useMutation({

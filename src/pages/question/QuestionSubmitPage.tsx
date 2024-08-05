@@ -4,7 +4,7 @@ import MultiLineInput from '../../components/input/text/MultiLineInput';
 import Button from '../../components/input/button/Button';
 import Icon from '../../components/icon/Icon';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useSubmitQuestion from '../../hooks/question/useSubmitQuestion';
 import useFetchQuestion from '../../hooks/question/useFetchQuestion';
 import { useState } from 'react';
@@ -13,9 +13,10 @@ import useInvalid from '../../hooks/valid/useInvalid';
 import useQuestionNavigation from '../../hooks/question/useQuestionNavigation';
 import { concatHostUrl } from '../../utils/utils';
 import SimpleModal from '../../components/modal/SimpleModal';
+import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 const QuestionSubmitPage = () => {
-  const navigate = useNavigate();
+  const { navigate } = useRemindMeNavigate();
   const params = useParams();
   const questionId = Number(params.questionId);
   const subjectId = Number(params.subjectId);
