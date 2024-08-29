@@ -13,6 +13,7 @@ import { AuthenticationContext } from '../../contexts/AuthenticationContext';
 
 import requestNotificationPermission from '../../utils/requestNotificationPermission';
 import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
+import { useQueryClient } from '@tanstack/react-query';
 
 const LoginPage = () => {
   const { navigate } = useRemindMeNavigate();
@@ -20,6 +21,7 @@ const LoginPage = () => {
   const { addToast } = useContext(ToastContext);
   const { mutate } = useLogin();
   const { authentication } = useContext(AuthenticationContext);
+  const queryClient = useQueryClient();
 
   const [loginRequest, setLoginRequest] = useState<LoginRequest>({
     username: '',
@@ -42,6 +44,10 @@ const LoginPage = () => {
       }
     });
   }, [addToast]);
+
+  useEffect(() => {
+    queryClient.clear();
+  }, [queryClient]);
 
   useEffect(() => {
     if (authentication.isAuthenticated) {

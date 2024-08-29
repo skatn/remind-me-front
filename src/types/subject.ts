@@ -34,3 +34,5 @@ export interface NotificationUpdateRequest {
 export interface NotificationGetResponse {
   isEnable: boolean;
 }
+
+export type SubjectRecentList = Subject[];

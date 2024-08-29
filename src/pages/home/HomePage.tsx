@@ -9,10 +9,12 @@ import { useContext, useEffect } from 'react';
 import { api } from '../../configs/AxiosConfig';
 import { ToastContext } from '../../contexts/ToastContext';
 import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
+import useFetchRecentSubjectList from '../../hooks/subject/useFetchRecentSubjectList';
 
 const HomePage = () => {
   const { navigate } = useRemindMeNavigate();
   const { content: subjects } = useFetchSubjectList({ size: 10 });
+  const { data: recentSubjects } = useFetchRecentSubjectList();
   const { addToast } = useContext(ToastContext);
 
   useEffect(() => {
@@ -37,33 +39,16 @@ const HomePage = () => {
       <Navigation title="Remind me" right={<MenuButton />} />
       <Banner />
       <HorizontalList title="최근 학습한 문제집" className="mt-[24px]">
-        <Subject
-          subject={{
-            id: 1,
-            title: '동해물과백두산이마르고닳도록',
-            color: 'D5E05B',
-            questionCount: 40,
-          }}
-          className="size-[110px] flex-shrink-0"
-        />
-        <Subject
-          subject={{
-            id: 1,
-            title: '동해물과백두산이마르고닳도록',
-            color: 'D5E05B',
-            questionCount: 40,
-          }}
-          className="size-[110px] flex-shrink-0"
-        />
-        <Subject
-          subject={{
-            id: 1,
-            title: '동해물과백두산이마르고닳도록',
-            color: 'D5E05B',
-            questionCount: 40,
-          }}
-          className="size-[110px] flex-shrink-0"
-        />
+        {recentSubjects?.length === 0 && (
+          <div
+            className={`relative flex aspect-square h-[110px] w-full flex-shrink-0 select-none items-center justify-center rounded-[8px] bg-neutral-light-4 p-[8px] hover:cursor-pointer`}
+          >
+            최근 학습한 문제집이 없어요
+          </div>
+        )}
+        {recentSubjects?.map((subject) => (
+          <Subject subject={subject} className="size-[110px] flex-shrink-0" />
+        ))}
       </HorizontalList>
 
       <HorizontalList
@@ -74,7 +59,14 @@ const HomePage = () => {
         }}
         actionText="더보기"
       >
-        {subjects.map((subject) => (
+        {subjects?.length === 0 && (
+          <div
+            className={`relative flex aspect-square h-[110px] w-full flex-shrink-0 select-none items-center justify-center rounded-[8px] bg-neutral-light-4 p-[8px] hover:cursor-pointer`}
+          >
+            등록된 문제집이 없어요
+          </div>
+        )}
+        {subjects?.map((subject) => (
           <Subject
             key={subject.id}
             subject={subject}
