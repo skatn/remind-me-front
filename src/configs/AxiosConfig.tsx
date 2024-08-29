@@ -38,7 +38,7 @@ export const AxiosConfig = () => {
     return () => {
       api.interceptors.request.eject(requestInterceptor);
     };
-  }, [authentication]);
+  }, [authentication, navigate, clearAuthentication]);
 
   return <></>;
 };
