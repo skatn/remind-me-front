@@ -38,8 +38,8 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ToastContextProvider>
           <AuthenticationContextProvider>
-            <AxiosConfig />
             <BrowserRouter>
+              <AxiosConfig />
               <Routes>
                 <Route element={<Layout />}>
                   <Route path="/login" element={<LoginPage />} />
