@@ -17,6 +17,8 @@ const HomePage = () => {
   const { data: recentSubjects } = useFetchRecentSubjectList();
   const { addToast } = useContext(ToastContext);
 
+  console.log('asdf');
+
   useEffect(() => {
     getFcmToken()
       .then((token) => {
@@ -47,7 +49,11 @@ const HomePage = () => {
           </div>
         )}
         {recentSubjects?.map((subject) => (
-          <Subject subject={subject} className="size-[110px] flex-shrink-0" />
+          <Subject
+            key={subject.id}
+            subject={subject}
+            className="size-[110px] flex-shrink-0"
+          />
         ))}
       </HorizontalList>
 

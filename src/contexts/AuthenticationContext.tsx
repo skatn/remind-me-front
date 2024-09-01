@@ -9,6 +9,7 @@ interface AuthenticationContextType {
   authentication: Authentication;
   setAuthentication: (authentication: Authentication) => void;
   clearAuthentication: () => void;
+  setTokens: (accessToken: string, refreshToken: string) => void;
 }
 
 const defaultAuthentication = {
@@ -35,6 +36,7 @@ export const AuthenticationContext = createContext<AuthenticationContextType>({
   authentication: { ...defaultAuthentication },
   setAuthentication: () => {},
   clearAuthentication: () => {},
+  setTokens: (accessToken, refreshToken) => {},
 });
 
 export const AuthenticationContextProvider = ({
@@ -52,9 +54,23 @@ export const AuthenticationContextProvider = ({
     setAuthentication({ ...defaultAuthentication });
   };
 
+  const setTokens = (accessToken: string, refreshToken: string) => {
+    console.log(`accessToken: ${accessToken}, refreshToken: ${refreshToken}`);
+    setAuthentication((authentication) => ({
+      ...authentication,
+      accessToken,
+      refreshToken,
+    }));
+  };
+
   return (
     <AuthenticationContext.Provider
-      value={{ authentication, setAuthentication, clearAuthentication }}
+      value={{
+        authentication,
+        setAuthentication,
+        clearAuthentication,
+        setTokens,
+      }}
     >
       {children}
     </AuthenticationContext.Provider>
