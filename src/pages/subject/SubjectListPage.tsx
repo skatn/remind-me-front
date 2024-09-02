@@ -26,7 +26,7 @@ const SubjectListPage = () => {
           onChange={(title) => setRequest((prev) => ({ ...prev, title }))}
         />
       </div>
-      <div className="mt-[24px] grid grid-cols-2 gap-[24px] px-[24px]">
+      <div className="mt-[24px] grid grid-cols-2 gap-[24px] px-[24px] md:grid-cols-4">
         {subjects.map((subject) => (
           <Subject key={subject.id} subject={subject} enableEdit />
         ))}
