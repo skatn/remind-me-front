@@ -17,8 +17,6 @@ const HomePage = () => {
   const { data: recentSubjects } = useFetchRecentSubjectList();
   const { addToast } = useContext(ToastContext);
 
-  console.log('asdf');
-
   useEffect(() => {
     getFcmToken()
       .then((token) => {

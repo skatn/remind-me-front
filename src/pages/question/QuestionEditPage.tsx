@@ -128,7 +128,7 @@ const QuestionEditPage = () => {
           <img
             src={concatHostUrl(param.questionImage)}
             alt="question"
-            className="mt-[10px] aspect-video object-cover"
+            className="mt-[10px] object-cover"
           />
         )}
 

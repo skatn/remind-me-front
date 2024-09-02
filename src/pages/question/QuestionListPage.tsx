@@ -50,7 +50,7 @@ const QuestionListPage = () => {
       <Link
         to={`/subjects/${Number(params.subjectId)}/questions/add`}
         state={{ subject: location.state?.subject }}
-        className="absolute bottom-[24px] right-[24px] flex size-[50px] items-center justify-center rounded-full bg-highlight-1 p-0"
+        className="fixed bottom-[24px] right-[24px] flex size-[50px] items-center justify-center rounded-full bg-highlight-1 p-0"
       >
         <Icon icon={faPlus} className="text-neutral-light-5" size={22} />
       </Link>
