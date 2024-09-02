@@ -83,7 +83,7 @@ const QuestionSubmitPage = () => {
             <img
               src={concatHostUrl(question?.questionImage)}
               alt="question"
-              className="mt-[10px] aspect-video object-cover"
+              className="mt-[10px] object-cover"
             />
           )}
 
