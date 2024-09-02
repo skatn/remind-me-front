@@ -51,7 +51,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (authentication.isAuthenticated) {
-      navigate(location.state?.redirect || '/');
+      navigate(location.state?.redirect || '/', { replace: true });
     }
   }, [authentication, navigate, location]);
 
@@ -59,7 +59,7 @@ const LoginPage = () => {
     event.preventDefault();
     mutate(loginRequest, {
       onSuccess: () => {
-        navigate(location.state?.redirect || '/');
+        navigate(location.state?.redirect || '/', { replace: true });
       },
       onError: (error) => {
         const errors = check(error);
