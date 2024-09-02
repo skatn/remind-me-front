@@ -7,7 +7,7 @@ import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import useSubmitQuestion from '../../hooks/question/useSubmitQuestion';
 import useFetchQuestion from '../../hooks/question/useFetchQuestion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { QuestionSubmitRequest } from '../../types/question';
 import useInvalid from '../../hooks/valid/useInvalid';
 import useQuestionNavigation from '../../hooks/question/useQuestionNavigation';
@@ -39,6 +39,10 @@ const QuestionSubmitPage = () => {
     title: '',
     message: '',
   });
+
+  useEffect(() => {
+    setSubmitRequest({ questionId, submittedAnswer: '' });
+  }, [questionId, setSubmitRequest]);
 
   const handleSubmit = () => {
     clear();
