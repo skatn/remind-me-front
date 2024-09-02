@@ -14,12 +14,14 @@ import useQuestionNavigation from '../../hooks/question/useQuestionNavigation';
 import { concatHostUrl } from '../../utils/utils';
 import SimpleModal from '../../components/modal/SimpleModal';
 import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
+import useFetchSubject from '../../hooks/subject/useFetchSubject';
 
 const QuestionSubmitPage = () => {
   const { navigate } = useRemindMeNavigate();
   const params = useParams();
   const questionId = Number(params.questionId);
   const subjectId = Number(params.subjectId);
+  const { data: subject } = useFetchSubject(subjectId);
   const { data: question } = useFetchQuestion(questionId);
   const {
     goToNextQuestion,
@@ -77,7 +79,7 @@ const QuestionSubmitPage = () => {
   return (
     <>
       <div className="flex flex-col">
-        <Navigation title="asdf" left={<BackButton />} />
+        <Navigation title={subject?.title || ''} left={<BackButton />} />
         <div className="p-[24px]">
           <div className="text-heading-md flex gap-[6px]">
             <span>{questionNavStatus.index + 1}.</span>
