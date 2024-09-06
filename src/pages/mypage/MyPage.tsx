@@ -31,16 +31,12 @@ const MyPage = () => {
 
       <div className="mx-[24px] mt-[24px]">
         <div className="flex flex-col gap-[7px]">
-          <span className="text-heading-sm">아이디</span>
-          {profile?.username}
-        </div>
-        <div className="mt-[20px] flex flex-col gap-[7px]">
           <span className="text-heading-sm">이름</span>
           {profile?.name}
         </div>
       </div>
 
-      <div className="mx-[24px] mt-[30px]">
+      <div className="mx-[24px] my-[30px]">
         <div className="flex items-center">
           <Icon
             icon={faAngleLeft}
@@ -58,7 +54,7 @@ const MyPage = () => {
           <span className="ml-[14px]">복습 그래프</span>
         </div>
 
-        <div className="mt-[10px] grid grid-cols-3 gap-[24px] rounded-[8px] border border-neutral-light-3 p-[8px]">
+        <div className="mt-[10px] grid grid-cols-3 gap-[24px] rounded-[8px] border border-neutral-light-3 p-[8px] sm:grid-cols-4 md:grid-cols-5">
           {histories &&
             Object.keys(histories).map((key, index) => (
               <div className="flex flex-col">
@@ -66,7 +62,7 @@ const MyPage = () => {
                 <div className="mt-[8px] inline-grid grid-cols-6 gap-[4px]">
                   {histories[key].map((h) => (
                     <div
-                      className={`size-[12px] rounded-[4px] ${convertHistoryToColor(h.count)}`}
+                      className={`aspect-square w-full rounded-[4px] ${convertHistoryToColor(h.count)}`}
                     ></div>
                   ))}
                 </div>

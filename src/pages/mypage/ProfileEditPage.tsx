@@ -40,12 +40,6 @@ const ProfileEditPage = () => {
 
       <div className="m-[24px] flex flex-col gap-[24px]">
         <Input
-          title="아이디"
-          className="w-full"
-          value={profile?.username}
-          disabled
-        />
-        <Input
           title="이름"
           className="w-full"
           value={name}
