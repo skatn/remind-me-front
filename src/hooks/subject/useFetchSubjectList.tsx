@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import {
   SubjectListGetRequest,
   SubjectListGetResponse,
@@ -9,7 +9,7 @@ import useIntersect from '../intersect/useIntersect';
 import subjectKeys from './subjectKeys';
 
 const useFetchSubjectList = (request: SubjectListGetRequest) => {
-  const query = useInfiniteQuery({
+  const query = useSuspenseInfiniteQuery({
     queryKey: [...subjectKeys.list(), request.size, request.title],
     queryFn: async ({ pageParam }) => {
       const response = await api.get<SubjectListGetResponse>('/api/subjects', {
