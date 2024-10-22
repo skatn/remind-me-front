@@ -1,6 +1,6 @@
 import HorizontalList from '../list/HorizontalList';
 
-const RecentlyUsedSubjectListSkeleton = () => {
+const SubjectListSkeleton = () => {
   return (
     <HorizontalList title="문제집" className="mt-[24px]">
       <div
@@ -12,4 +12,4 @@ const RecentlyUsedSubjectListSkeleton = () => {
   );
 };
 
-export default RecentlyUsedSubjectListSkeleton;
+export default SubjectListSkeleton;

@@ -1,6 +1,6 @@
 import HorizontalList from '../list/HorizontalList';
 
-const RecentlyUsedSubjectListFallback = () => {
+const SubjectListFallback = () => {
   return (
     <HorizontalList title="문제집" className="mt-[24px]">
       <div
@@ -12,4 +12,4 @@ const RecentlyUsedSubjectListFallback = () => {
   );
 };
 
-export default RecentlyUsedSubjectListFallback;
+export default SubjectListFallback;
