@@ -1,4 +1,6 @@
+import Loading from '../loading/Loading';
+
 const QuestionListSkeleton = () => {
-  return <>로딩중</>;
+  return <Loading />;
 };
 export default QuestionListSkeleton;

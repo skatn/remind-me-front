@@ -5,7 +5,7 @@ import Icon from '../../components/icon/Icon';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import useFetchProfile from '../../hooks/member/useFetchProfile';
 import { Suspense } from 'react';
-import QuestionSubmitHistory from '../../components/analyze/QuestionSubmitHistory';
+import QuestionSubmitHistoryYears from '../../components/analyze/QuestionSubmitHistoryYears';
 
 const MyPage = () => {
   const { data: profile } = useFetchProfile();
@@ -30,7 +30,7 @@ const MyPage = () => {
       </div>
 
       <Suspense>
-        <QuestionSubmitHistory />
+        <QuestionSubmitHistoryYears />
       </Suspense>
     </div>
   );

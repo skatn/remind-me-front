@@ -4,7 +4,7 @@ import { convertHistoryToColor } from '../../utils/utils';
 import { useState } from 'react';
 import useFetchYearsHistories from '../../hooks/question/useFetchYearsHistories';
 
-const QuestionSubmitHistory = () => {
+const QuestionSubmitHistoryYears = () => {
   const [year, setYear] = useState<number>(new Date().getFullYear());
   const { data: histories } = useFetchYearsHistories(year);
 
@@ -46,4 +46,4 @@ const QuestionSubmitHistory = () => {
   );
 };
 
-export default QuestionSubmitHistory;
+export default QuestionSubmitHistoryYears;

@@ -1,5 +1,7 @@
+import Loading from '../loading/Loading';
+
 const SubjectGridSkeleton = () => {
-  return <>로딩중</>;
+  return <Loading />;
 };
 
 export default SubjectGridSkeleton;
