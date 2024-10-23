@@ -6,6 +6,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 import useFetchProfile from '../../hooks/member/useFetchProfile';
 import { Suspense } from 'react';
 import QuestionSubmitHistoryYears from '../../components/analyze/QuestionSubmitHistoryYears';
+import BottomNavigation from '../../components/navigation/BottomNavigation';
 
 const MyPage = () => {
   const { data: profile } = useFetchProfile();
@@ -32,6 +33,8 @@ const MyPage = () => {
       <Suspense>
         <QuestionSubmitHistoryYears />
       </Suspense>
+
+      <BottomNavigation />
     </div>
   );
 };
