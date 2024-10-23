@@ -1,10 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import questionKeys from './questionKeys';
 import { api } from '../../configs/AxiosConfig';
 import { QuestionGetResponse } from '../../types/question';
 
 const useFetchQuestion = (questionId: number) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: questionKeys.one(questionId),
     queryFn: async () => {
       const response = await api.get<QuestionGetResponse>(
