@@ -23,6 +23,7 @@ import QuestionEditPage from './pages/question/QuestionEditPage';
 import MyPage from './pages/mypage/MyPage';
 import ProfileEditPage from './pages/mypage/ProfileEditPage';
 import SettingPage from './pages/setting/SettingPage';
+import { Suspense } from 'react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,60 +41,62 @@ function App() {
           <AuthenticationContextProvider>
             <BrowserRouter>
               <AxiosConfig />
-              <Routes>
-                <Route element={<Layout />}>
-                  <Route path="/login" element={<LoginPage />} />
-                  <Route path="/signup" element={<SignupPage />} />
-                  <Route
-                    path="/login-callback"
-                    element={<LoginCallbackPage />}
-                  />
-                  <Route path="*" element={<NotFoundPage />} />
-                </Route>
+              <Suspense>
+                <Routes>
+                  <Route element={<Layout />}>
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/signup" element={<SignupPage />} />
+                    <Route
+                      path="/login-callback"
+                      element={<LoginCallbackPage />}
+                    />
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Route>
 
-                <Route
-                  element={
-                    <Private>
-                      <Layout />
-                    </Private>
-                  }
-                >
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/setting" element={<SettingPage />} />
-                  <Route path="/mypage" element={<MyPage />} />
-                  <Route path="/mypage/edit" element={<ProfileEditPage />} />
-                  <Route path="/subjects" element={<SubjectListPage />} />
-                  <Route path="/subjects/add" element={<SubjectAddPage />} />
                   <Route
-                    path="/subjects/:subjectId/edit"
-                    element={<SubjectUpdatePage />}
-                  />
-                  <Route
-                    path="/subjects/:subjectId"
-                    element={<QuestionListPage />}
-                  />
-                  <Route
-                    path="/subjects/:subjectId/questions/add"
-                    element={<QuestionAddPage />}
-                  />
-                  <Route
-                    path="/subjects/:subjectId/manage"
-                    element={<SubjectManagePage />}
-                  />
-                  <Route
-                    path="/subjects/:subjectId/questions/:questionId"
-                    element={<QuestionSubmitPage />}
-                  />
-                  <Route
-                    path="/subjects/:subjectId/questions/:questionId/explain"
-                    element={<ExplainPage />}
-                  />
-                  <Route
-                    path="/subjects/:subjectId/questions/:questionId/edit"
-                    element={<QuestionEditPage />}
-                  />
-                </Route>
-              </Routes>
+                    element={
+                      <Private>
+                        <Layout />
+                      </Private>
+                    }
+                  >
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/setting" element={<SettingPage />} />
+                    <Route path="/mypage" element={<MyPage />} />
+                    <Route path="/mypage/edit" element={<ProfileEditPage />} />
+                    <Route path="/subjects" element={<SubjectListPage />} />
+                    <Route path="/subjects/add" element={<SubjectAddPage />} />
+                    <Route
+                      path="/subjects/:subjectId/edit"
+                      element={<SubjectUpdatePage />}
+                    />
+                    <Route
+                      path="/subjects/:subjectId"
+                      element={<QuestionListPage />}
+                    />
+                    <Route
+                      path="/subjects/:subjectId/questions/add"
+                      element={<QuestionAddPage />}
+                    />
+                    <Route
+                      path="/subjects/:subjectId/manage"
+                      element={<SubjectManagePage />}
+                    />
+                    <Route
+                      path="/subjects/:subjectId/questions/:questionId"
+                      element={<QuestionSubmitPage />}
+                    />
+                    <Route
+                      path="/subjects/:subjectId/questions/:questionId/explain"
+                      element={<ExplainPage />}
+                    />
+                    <Route
+                      path="/subjects/:subjectId/questions/:questionId/edit"
+                      element={<QuestionEditPage />}
+                    />
+                  </Route>
+                </Routes>
+              </Suspense>
             </BrowserRouter>
             <ReactQueryDevtools />
           </AuthenticationContextProvider>

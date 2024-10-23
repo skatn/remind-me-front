@@ -9,6 +9,7 @@ import SubjectGrid from '../../components/subject/SubjectGrid';
 import { ErrorBoundary } from 'react-error-boundary';
 import SubjectGridFallback from '../../components/subject/SubjectGridFallback';
 import SubjectGridSkeleton from '../../components/subject/SubjectGridSkeleton';
+import BottomNavigation from '../../components/navigation/BottomNavigation';
 
 const SubjectListPage = () => {
   const { navigate } = useRemindMeNavigate();
@@ -34,6 +35,8 @@ const SubjectListPage = () => {
           <SubjectGrid request={request} />
         </Suspense>
       </ErrorBoundary>
+
+      <BottomNavigation />
     </div>
   );
 };

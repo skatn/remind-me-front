@@ -1,5 +1,4 @@
 import Navigation from '../../components/navigation/Navigation';
-import MenuButton from '../../components/navigation/MenuButton';
 import Banner from '../../components/banner/Banner';
 import { getFcmToken } from '../../firebase/firebase';
 import { useContext, useEffect } from 'react';
@@ -8,6 +7,7 @@ import { ToastContext } from '../../contexts/ToastContext';
 import { AuthenticationContext } from '../../contexts/AuthenticationContext';
 import RecentlyUsedSubjectList from '../../components/subject/RecentlyUsedSubjectList';
 import SubjectList from '../../components/subject/SubjectList';
+import BottomNavigation from '../../components/navigation/BottomNavigation';
 
 const HomePage = () => {
   const { authentication } = useContext(AuthenticationContext);
@@ -35,10 +35,11 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col">
-      <Navigation title="Remind me" right={<MenuButton />} />
+      <Navigation title="Remind me" />
       <Banner />
       <RecentlyUsedSubjectList />
       <SubjectList />
+      <BottomNavigation />
     </div>
   );
 };
