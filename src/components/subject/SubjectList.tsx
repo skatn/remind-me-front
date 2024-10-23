@@ -2,10 +2,13 @@ import Subject from './Subject';
 import HorizontalList from '../list/HorizontalList';
 import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 import useFetchSubjectList from '../../hooks/subject/useFetchSubjectList';
+import { ErrorBoundary } from 'react-error-boundary';
+import SubjectListFallback from './SubjectListFallback';
+import { Suspense } from 'react';
+import SubjectListSkeleton from './SubjectListSkeleton';
 
 const SubjectList = () => {
   const { navigate } = useRemindMeNavigate();
-  const { content: subjects } = useFetchSubjectList({ size: 10 });
 
   return (
     <HorizontalList
@@ -16,6 +19,20 @@ const SubjectList = () => {
       }}
       actionText="더보기"
     >
+      <ErrorBoundary fallback={<SubjectListFallback />}>
+        <Suspense fallback={<SubjectListSkeleton />}>
+          <Subjects />
+        </Suspense>
+      </ErrorBoundary>
+    </HorizontalList>
+  );
+};
+
+const Subjects = () => {
+  const { content: subjects } = useFetchSubjectList({ size: 10 });
+
+  return (
+    <>
       {subjects?.length === 0 && (
         <div
           className={`relative flex aspect-square h-[110px] w-full flex-shrink-0 select-none items-center justify-center rounded-[8px] bg-neutral-light-4 p-[8px] hover:cursor-pointer`}
@@ -30,7 +47,7 @@ const SubjectList = () => {
           className="size-[110px] flex-shrink-0"
         />
       ))}
-    </HorizontalList>
+    </>
   );
 };
 
