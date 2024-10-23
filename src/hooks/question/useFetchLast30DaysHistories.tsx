@@ -1,9 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { api } from '../../configs/AxiosConfig';
 import { QuestionHistory } from '../../types/question';
 
 const useFetchLast30DaysHistories = () => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ['question-history', 'last30days'],
     queryFn: async () => {
       const response = await api.get<QuestionHistory[]>(

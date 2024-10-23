@@ -8,11 +8,12 @@ import QuestionManageListItem from '../../components/question/QuestionManageList
 import { useParams } from 'react-router-dom';
 import useUpdateNotification from '../../hooks/subject/useUpdateNotification';
 import useDeleteSubject from '../../hooks/subject/useDeleteSubject';
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import SimpleModal from '../../components/modal/SimpleModal';
 import useDeleteQuestion from '../../hooks/question/useDeleteQuestion';
 import useFetchQuestionList from '../../hooks/question/useFetchQuestionList';
 import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
+import Loading from '../../components/loading/Loading';
 
 const SubjectManagePage = () => {
   const { subjectId } = useParams();
@@ -23,20 +24,9 @@ const SubjectManagePage = () => {
     mutate: updateMutate,
   } = useUpdateNotification(Number(subjectId));
   const { mutate: deleteMutate } = useDeleteSubject();
-  const { mutate: questionDeleteMutate } = useDeleteQuestion();
-  const { ref, content } = useFetchQuestionList({
-    subjectId: Number(subjectId),
-    size: 10,
-  });
 
   const [isSubjectDeleteModalOpen, setIsSubjectDeleteModalOpen] =
     useState<boolean>(false);
-  const [questionDeleteModalState, setQuestionDeleteModalState] = useState<any>(
-    {
-      isOpen: false,
-      questionId: 0,
-    },
-  );
 
   const handleChangeNotification = (enable: boolean) => {
     setParams({ enable });
@@ -74,31 +64,9 @@ const SubjectManagePage = () => {
             />
           </div>
 
-          <div className="mt-[40px]">
-            <div className="mt-[14px] flex flex-col gap-[8px]">
-              {content?.map((question, index) => (
-                <React.Fragment key={question.id}>
-                  <QuestionManageListItem
-                    index={index + 1}
-                    question={question.question}
-                    onClickEdit={() => {
-                      navigate(
-                        `/subjects/${subjectId}/questions/${question.id}/edit`,
-                      );
-                    }}
-                    onClickDelete={() => {
-                      setQuestionDeleteModalState({
-                        isOpen: true,
-                        questionId: question.id,
-                      });
-                    }}
-                  />
-                  {index < content?.length - 1 && <Divider />}
-                </React.Fragment>
-              ))}
-              <div ref={ref}></div>
-            </div>
-          </div>
+          <Suspense fallback={<Loading />}>
+            <Questions subjectId={Number(subjectId)} />
+          </Suspense>
         </div>
       </div>
 
@@ -119,7 +87,54 @@ const SubjectManagePage = () => {
           }}
         />
       )}
+    </>
+  );
+};
 
+interface QuestionsProps {
+  subjectId: number;
+}
+const Questions = ({ subjectId }: QuestionsProps) => {
+  const { navigate } = useRemindMeNavigate();
+  const { ref, content } = useFetchQuestionList({
+    subjectId: Number(subjectId),
+    size: 10,
+  });
+  const { mutate: questionDeleteMutate } = useDeleteQuestion();
+  const [questionDeleteModalState, setQuestionDeleteModalState] = useState<any>(
+    {
+      isOpen: false,
+      questionId: 0,
+    },
+  );
+
+  return (
+    <>
+      <div className="mt-[40px]">
+        <div className="mt-[14px] flex flex-col gap-[8px]">
+          {content?.map((question, index) => (
+            <React.Fragment key={question.id}>
+              <QuestionManageListItem
+                index={index + 1}
+                question={question.question}
+                onClickEdit={() => {
+                  navigate(
+                    `/subjects/${subjectId}/questions/${question.id}/edit`,
+                  );
+                }}
+                onClickDelete={() => {
+                  setQuestionDeleteModalState({
+                    isOpen: true,
+                    questionId: question.id,
+                  });
+                }}
+              />
+              {index < content?.length - 1 && <Divider />}
+            </React.Fragment>
+          ))}
+          <div ref={ref}></div>
+        </div>
+      </div>
       {questionDeleteModalState.isOpen && (
         <SimpleModal
           title="문제 삭제"

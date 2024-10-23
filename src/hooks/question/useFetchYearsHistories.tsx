@@ -1,9 +1,9 @@
 import { api } from '../../configs/AxiosConfig';
 import { QuestionYearHistory } from '../../types/question';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 const useFetchYearsHistories = (year: number) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ['question-history', 'year', year],
     queryFn: async () => {
       const response = await api.get<QuestionYearHistory>(

@@ -6,7 +6,7 @@ export interface ErrorResponse {
 export interface ScrollRequest {
   size: number;
   cursor?: any;
-  nextCursor?: any;
+  subCursor?: any;
 }
 
 export interface ScrollResponse<T> {

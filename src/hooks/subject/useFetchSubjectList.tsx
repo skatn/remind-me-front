@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import {
   SubjectListGetRequest,
   SubjectListGetResponse,
@@ -9,16 +9,26 @@ import useIntersect from '../intersect/useIntersect';
 import subjectKeys from './subjectKeys';
 
 const useFetchSubjectList = (request: SubjectListGetRequest) => {
-  const query = useInfiniteQuery({
+  const query = useSuspenseInfiniteQuery({
     queryKey: [...subjectKeys.list(), request.size, request.title],
     queryFn: async ({ pageParam }) => {
       const response = await api.get<SubjectListGetResponse>('/api/subjects', {
-        params: { ...request, cursor: pageParam },
+        params: {
+          ...request,
+          cursor: pageParam?.cursor,
+          subCursor: pageParam?.subCursor,
+        },
       });
       return response.data;
     },
-    initialPageParam: null,
-    getNextPageParam: (lastPage) => lastPage.nextCursor,
+    initialPageParam: { cursor: null, subCursor: null },
+    getNextPageParam: (lastPage) =>
+      lastPage.nextCursor
+        ? {
+            cursor: lastPage.nextCursor,
+            subCursor: lastPage.nextSubCursor,
+          }
+        : null,
   });
 
   const content = useMemo(

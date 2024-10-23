@@ -2,12 +2,12 @@ import questionKeys from './questionKeys';
 import { api } from '../../configs/AxiosConfig';
 import { ScrollResponse } from '../../types/axios';
 import { Question, QuestionListRequest } from '../../types/question';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import useIntersect from '../intersect/useIntersect';
 
 const useFetchQuestionList = (request: QuestionListRequest) => {
-  const query = useInfiniteQuery({
+  const query = useSuspenseInfiniteQuery({
     queryKey: [...questionKeys.list(request.subjectId), request.size],
     queryFn: async ({ pageParam }) => {
       const response = await api.get<ScrollResponse<Question>>(
