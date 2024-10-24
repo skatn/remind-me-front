@@ -1,8 +1,10 @@
 import { ScrollRequest, ScrollResponse } from './axios';
 
-export interface SubjectAddRequest {
+export interface SubjectFormData {
   title: string;
   color: string;
+  visibility: 'PUBLIC' | 'PRIVATE';
+  tags: string[];
 }
 
 export interface SubjectUpdateRequest {

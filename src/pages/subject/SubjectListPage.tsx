@@ -1,5 +1,4 @@
 import Navigation from '../../components/navigation/Navigation';
-import BackButton from '../../components/navigation/BackButton';
 import Button from '../../components/input/button/Button';
 import Search from '../../components/input/text/Search';
 import { Suspense, useState } from 'react';
@@ -17,7 +16,7 @@ const SubjectListPage = () => {
 
   return (
     <div className="flex flex-col">
-      <Navigation title="문제집" left={<BackButton />} />
+      <Navigation title="문제집" />
 
       <div className="mt-[12px] flex items-center gap-[24px] px-[24px]">
         <Button className="h-[38px]" onClick={() => navigate('/subjects/add')}>
