@@ -21,9 +21,11 @@ const Subject = ({ subject, className, enableEdit }: SubjectProps) => {
       }
     >
       <span className="text-heading-sm">{subject.title}</span>
-      <span className="text-body-sm absolute bottom-[8px] end-[11px] text-neutral-dark-5">
-        {subject.questionCount} 문제
-      </span>
+      <div className="text-body-sm absolute bottom-[8px] end-[11px] start-[11px] flex justify-between text-neutral-dark-5">
+        <span>{subject.author.name}</span>
+        <span>{subject.questionCount} 문제</span>
+      </div>
+
       {enableEdit && (
         <button
           className="absolute end-[11px] top-[8px] size-[16px]"
