@@ -1,26 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { SubjectUpdateRequest } from '../../types/subject';
+import { SubjectFormData } from '../../types/subject';
 import { api } from '../../configs/AxiosConfig';
-import useFetchSubject from './useFetchSubject';
-import { useEffect, useState } from 'react';
 import subjectKeys from './subjectKeys';
 
 const useUpdateSubject = (subjectId: number) => {
   const queryClient = useQueryClient();
-  const [params, setParams] = useState<SubjectUpdateRequest>({
-    title: '',
-    color: '',
-  });
-
-  const { data: subject, isLoading } = useFetchSubject(Number(subjectId));
-  useEffect(() => {
-    if (!isLoading && subject) {
-      setParams({ color: subject.color, title: subject.title });
-    }
-  }, [subject, isLoading, setParams]);
 
   const mutation = useMutation({
-    mutationFn: (request: SubjectUpdateRequest) => {
+    mutationFn: (request: SubjectFormData) => {
       return api.patch(`/api/subjects/${subjectId}`, request);
     },
     onSuccess: () => {
@@ -28,7 +15,7 @@ const useUpdateSubject = (subjectId: number) => {
     },
   });
 
-  return { params, setParams, ...mutation };
+  return { ...mutation };
 };
 
 export default useUpdateSubject;

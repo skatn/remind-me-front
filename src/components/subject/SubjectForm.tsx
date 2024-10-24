@@ -2,7 +2,7 @@ import ColorSelector from '../color/ColorSelector';
 import Input from '../input/text/Input';
 import OutlineButton from '../input/button/OutlineButton';
 import Button from '../input/button/Button';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { SubjectFormData } from '../../types/subject';
 import LabeledToggle from '../input/toggle/LabeledToggle';
 import TagInput from '../input/tag/TagInput';
@@ -11,24 +11,33 @@ interface SubjectFormProps {
   onSubmit: (formData: SubjectFormData) => void;
   onCancel: () => void;
   invalidField?: any;
+  initialData?: SubjectFormData;
 }
 
 const SubjectForm = ({
   onSubmit,
   onCancel,
   invalidField,
+  initialData,
 }: SubjectFormProps) => {
-  const [formData, setFormData] = useState<SubjectFormData>({
-    title: '',
-    color: '',
-    visibility: 'PRIVATE',
-    tags: [],
-  });
+  const [formData, setFormData] = useState<SubjectFormData>(
+    initialData || {
+      title: '',
+      color: '',
+      visibility: 'PRIVATE',
+      tags: [],
+    },
+  );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(formData);
   };
+
+  const handleChangeTags = useCallback(
+    (tags: string[]) => setFormData((prev) => ({ ...prev, tags })),
+    [],
+  );
 
   return (
     <form
@@ -61,7 +70,7 @@ const SubjectForm = ({
         invalid={invalidField.title.length > 0}
         supportText={invalidField.title.join('/')}
       />
-      <TagInput />
+      <TagInput initialData={initialData?.tags} onChange={handleChangeTags} />
       <div className="flex justify-end gap-[10px]">
         <OutlineButton
           type="button"

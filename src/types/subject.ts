@@ -7,11 +7,6 @@ export interface SubjectFormData {
   tags: string[];
 }
 
-export interface SubjectUpdateRequest {
-  title: string;
-  color: string;
-}
-
 export interface SubjectAddResponse {
   subjectId: number;
 }
@@ -26,7 +21,29 @@ export interface Subject {
   id: number;
   title: string;
   color: string;
+  createdAt: string;
+  updatedAt: string;
   questionCount: number;
+  tags: string[];
+  author: Author;
+}
+
+export interface SubjectDetails {
+  id: number;
+  title: string;
+  color: string;
+  createdAt: string;
+  updatedAt: string;
+  isEnableNotification: boolean;
+  visibility: 'PUBLIC' | 'PRIVATE';
+  questionCount: number;
+  tags: string[];
+  author: Author;
+}
+
+export interface Author {
+  id: number;
+  name: string;
 }
 
 export interface NotificationUpdateRequest {

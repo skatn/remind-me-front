@@ -35,8 +35,9 @@ const BottomNavigation = () => {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-10 bg-neutral-light-5 shadow-[0_-1px_5px_rgba(0,0,0,0.1)]">
       <div className="mx-auto flex h-[60px] max-w-screen-md items-center justify-around">
-        {tabs.map((tab) => (
+        {tabs.map((tab, index) => (
           <Link
+            key={index}
             to={tab.path}
             className={`inline-flex flex-col items-center gap-[2px] ${location.pathname === tab.path ? 'text-highlight-1' : 'text-neutral-dark-1'}`}
           >

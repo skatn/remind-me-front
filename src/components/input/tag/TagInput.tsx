@@ -1,9 +1,14 @@
 import Input from '../text/Input';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Tag from './Tag';
 
-const TagInput = () => {
-  const [tags, setTags] = useState<string[]>([]);
+interface TagInputProps {
+  onChange?: (tags: string[]) => void;
+  initialData?: string[];
+}
+
+const TagInput = ({ onChange, initialData }: TagInputProps) => {
+  const [tags, setTags] = useState<string[]>(initialData || []);
   const [inputTag, setInputTag] = useState<string>('');
 
   const addTag = (tag: string) => {
@@ -23,6 +28,12 @@ const TagInput = () => {
       addTag(inputTag);
     }
   };
+
+  useEffect(() => {
+    if (onChange) {
+      onChange([...tags]);
+    }
+  }, [onChange, tags]);
 
   return (
     <div className="flex flex-col gap-[18px]">
