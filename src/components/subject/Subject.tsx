@@ -1,15 +1,12 @@
 import { Subject as SubjectType } from '../../types/subject';
-import Icon from '../icon/Icon';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
 import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 
 interface SubjectProps {
   subject: SubjectType;
   className?: string;
-  enableEdit?: boolean;
 }
 
-const Subject = ({ subject, className, enableEdit }: SubjectProps) => {
+const Subject = ({ subject, className }: SubjectProps) => {
   const { navigate } = useRemindMeNavigate();
 
   return (
@@ -25,18 +22,6 @@ const Subject = ({ subject, className, enableEdit }: SubjectProps) => {
         <span>{subject.author.name}</span>
         <span>{subject.questionCount} 문제</span>
       </div>
-
-      {enableEdit && (
-        <button
-          className="absolute end-[11px] top-[8px] size-[16px]"
-          onClick={(e) => {
-            e.stopPropagation();
-            navigate(`/subjects/${subject.id}/edit`);
-          }}
-        >
-          <Icon icon={faPen} />
-        </button>
-      )}
     </div>
   );
 };
