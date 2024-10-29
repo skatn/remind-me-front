@@ -18,7 +18,7 @@ import QuestionListPage from './pages/question/QuestionListPage';
 import QuestionAddPage from './pages/question/QuestionAddPage';
 import QuestionSubmitPage from './pages/question/QuestionSubmitPage';
 import ExplainPage from './pages/question/ExplainPage';
-import SubjectManagePage from './pages/subject/SubjectManagePage';
+import QuestionManagePage from './pages/question/QuestionManagePage';
 import QuestionEditPage from './pages/question/QuestionEditPage';
 import MyPage from './pages/mypage/MyPage';
 import ProfileEditPage from './pages/mypage/ProfileEditPage';
@@ -80,7 +80,7 @@ function App() {
                     />
                     <Route
                       path="/subjects/:subjectId/manage"
-                      element={<SubjectManagePage />}
+                      element={<QuestionManagePage />}
                     />
                     <Route
                       path="/subjects/:subjectId/questions/:questionId"

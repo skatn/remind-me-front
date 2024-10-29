@@ -10,7 +10,7 @@ import useFetchQuestionList from '../../hooks/question/useFetchQuestionList';
 import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 import Loading from '../../components/loading/Loading';
 
-const SubjectManagePage = () => {
+const QuestionManagePage = () => {
   const { subjectId } = useParams();
 
   return (
@@ -93,4 +93,4 @@ const Questions = ({ subjectId }: QuestionsProps) => {
   );
 };
 
-export default SubjectManagePage;
+export default QuestionManagePage;
