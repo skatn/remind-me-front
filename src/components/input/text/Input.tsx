@@ -9,6 +9,7 @@ interface InputProps {
   disabled?: boolean;
   className?: string;
   onChange?: (value: string) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
@@ -22,6 +23,7 @@ const Input = ({
   disabled,
   className,
   onChange,
+  onKeyDown,
 }: InputProps) => {
   return (
     <div className={`input-container ${className}`}>
@@ -41,6 +43,7 @@ const Input = ({
         onChange={(e) =>
           onChange ? onChange(e.currentTarget.value) : () => {}
         }
+        onKeyDown={(e) => (onKeyDown ? onKeyDown(e) : () => {})}
         autoComplete="off"
       />
       {supportText && (

@@ -1,13 +1,8 @@
 import Navigation from '../../components/navigation/Navigation';
 import BackButton from '../../components/navigation/BackButton';
-import Toggle from '../../components/input/toggle/Toggle';
-import Icon from '../../components/icon/Icon';
-import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash';
 import Divider from '../../components/divider/Divider';
 import QuestionManageListItem from '../../components/question/QuestionManageListItem';
 import { useParams } from 'react-router-dom';
-import useUpdateNotification from '../../hooks/subject/useUpdateNotification';
-import useDeleteSubject from '../../hooks/subject/useDeleteSubject';
 import React, { Suspense, useState } from 'react';
 import SimpleModal from '../../components/modal/SimpleModal';
 import useDeleteQuestion from '../../hooks/question/useDeleteQuestion';
@@ -15,79 +10,17 @@ import useFetchQuestionList from '../../hooks/question/useFetchQuestionList';
 import useRemindMeNavigate from '../../hooks/navigation/useRemindMeNavigate';
 import Loading from '../../components/loading/Loading';
 
-const SubjectManagePage = () => {
+const QuestionManagePage = () => {
   const { subjectId } = useParams();
-  const { navigate } = useRemindMeNavigate();
-  const {
-    params,
-    setParams,
-    mutate: updateMutate,
-  } = useUpdateNotification(Number(subjectId));
-  const { mutate: deleteMutate } = useDeleteSubject();
-
-  const [isSubjectDeleteModalOpen, setIsSubjectDeleteModalOpen] =
-    useState<boolean>(false);
-
-  const handleChangeNotification = (enable: boolean) => {
-    setParams({ enable });
-    updateMutate({ enable });
-  };
 
   return (
-    <>
-      <div className="flex flex-col">
-        <Navigation title="문제집 관리" left={<BackButton />} />
-        <div className="flex flex-col gap-[10px] p-[24px]">
-          <div className="flex justify-between">
-            <div className="flex flex-col">
-              <span className="text-body-md">Push 알림</span>
-              <span className="text-body-xs text-neutral-dark-5">
-                off시 해당 문제집에 수록된 문제들의 알림을 받지 않습니다.
-              </span>
-            </div>
-            <Toggle
-              checked={params.enable}
-              onChange={handleChangeNotification}
-            />
-          </div>
+    <div className="flex flex-col">
+      <Navigation title="문제 관리" left={<BackButton />} />
 
-          <Divider />
-
-          <div className="flex justify-between">
-            <span className="text-body-md text-support-error-1">
-              문제집 삭제
-            </span>
-            <Icon
-              icon={faTrash}
-              className="cursor-pointer text-support-error-1"
-              onClick={() => setIsSubjectDeleteModalOpen(true)}
-            />
-          </div>
-
-          <Suspense fallback={<Loading />}>
-            <Questions subjectId={Number(subjectId)} />
-          </Suspense>
-        </div>
-      </div>
-
-      {isSubjectDeleteModalOpen && (
-        <SimpleModal
-          title="문제집 삭제"
-          desc="정말 삭제 하시겠습니까?"
-          leftBtnTxt="취소"
-          rightBtnTxt="삭제"
-          onClickLeftBtn={() => setIsSubjectDeleteModalOpen(false)}
-          onClickRightBtn={() => {
-            deleteMutate(Number(subjectId), {
-              onSuccess: () => {
-                navigate('/subjects', { replace: true });
-              },
-            });
-            setIsSubjectDeleteModalOpen(false);
-          }}
-        />
-      )}
-    </>
+      <Suspense fallback={<Loading />}>
+        <Questions subjectId={Number(subjectId)} />
+      </Suspense>
+    </div>
   );
 };
 
@@ -160,4 +93,4 @@ const Questions = ({ subjectId }: QuestionsProps) => {
   );
 };
 
-export default SubjectManagePage;
+export default QuestionManagePage;
